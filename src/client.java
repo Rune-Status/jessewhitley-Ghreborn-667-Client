@@ -39,7 +39,12 @@ public boolean HPBarToggle = true;
 	     method77(" ", 80, x, false);
 	     System.out.println("Reached appearInChat for: "+x);
 	}
-
+    void mouseWheelDragged(int i, int j) {
+        if (!mouseWheelDown)
+            return;
+        this.anInt1186 += i * 3;
+        this.anInt1187 += (j << 1);
+    }
 	public int positions[] = new int[2000];
 	public int landScapes[] = new int[2000];
 	public int objects[] = new int[2000];
@@ -98,7 +103,7 @@ public boolean HPBarToggle = true;
 	}
 public void processExtraMenus(){
 
-		if(super.anInt20 >= 545 && super.anInt20 <= 579 && super.anInt21 >= 5 && super.anInt21 < 40){
+		if(super.mouseX >= 545 && super.mouseX <= 579 && super.mouseY >= 5 && super.mouseY < 40){
 				aStringArray1199[1] = "Face North";
 				anIntArray1093[1] = 1150;
 				anInt1133++;
@@ -595,8 +600,8 @@ public final void init()
             j = 0;
         if(aBoolean885) {
             if(j != 1) {
-                int k = super.anInt20;
-                int j1 = super.anInt21;
+                int k = super.mouseX;
+                int j1 = super.mouseY;
                 if(anInt948 == 0) {
                     k -= 4;
                     j1 -= 4;
@@ -3006,8 +3011,8 @@ return;
 Class30_Sub2_Sub1.method336(16, j + 1, i + 1, 0, k - 2, 0);
 Class30_Sub2_Sub1.method337(i + 1, k - 2, l - 19, 0, j + 18, true);
 aClass30_Sub2_Sub1_Sub4_1272.method385(i1, "Choose Option", j + 14, 822, i + 3);
-int j1 = super.anInt20;
-int k1 = super.anInt21;
+int j1 = super.mouseX;
+int k1 = super.mouseY;
 if(anInt948 == 0)
 {
 j1 -= 4;
@@ -4178,7 +4183,7 @@ System.out.println("ObjectMaps:"+anIntArray1236[i]);
         if(anInt1086 != 0)
         {
             anInt989++;
-            if(super.anInt20 > anInt1087 + 5 || super.anInt20 < anInt1087 - 5 || super.anInt21 > anInt1088 + 5 || super.anInt21 < anInt1088 - 5)
+            if(super.mouseX > anInt1087 + 5 || super.mouseX < anInt1087 - 5 || super.mouseY > anInt1088 + 5 || super.mouseY < anInt1088 - 5)
                 aBoolean1242 = true;
             if(super.anInt19 == 0)
             {
@@ -4277,11 +4282,11 @@ System.out.println("ObjectMaps:"+anIntArray1236[i]);
             anIntArray1030[i1]++;
 
         method73(732);
-        super.anInt18++;
-        if(super.anInt18 > 4500)
+        super.idleTime++;
+        if(super.idleTime > 4500)
         {
             anInt1011 = 250;
-            super.anInt18 -= 500;
+            super.idleTime -= 500;
             aClass30_Sub2_Sub2_1192.method397((byte)6, 202);
         }
         anInt988++;
@@ -5698,8 +5703,8 @@ public int hpFlash = 2;
         {
             aStringArray1199[anInt1133] = "Walk Here";
             anIntArray1093[anInt1133] = 516;
-            anIntArray1091[anInt1133] = super.anInt20;
-            anIntArray1092[anInt1133] = super.anInt21;
+            anIntArray1091[anInt1133] = super.mouseX;
+            anIntArray1092[anInt1133] = super.mouseY;
             anInt1133++;
         }
         int j = -1;//id
@@ -7141,32 +7146,32 @@ if(s.startsWith("dump")) {
         anInt1133 = 1;
         method129(false);
         anInt886 = 0;
-        if(super.anInt20 > 4 && super.anInt21 > 4 && super.anInt20 < 516 && super.anInt21 < 338)
+        if(super.mouseX > 4 && super.mouseY > 4 && super.mouseX < 516 && super.mouseY < 338)
             if(anInt857 != -1)
-                method29(4, 13037, Class9.aClass9Array210[anInt857], super.anInt20, 4, super.anInt21, 0);
+                method29(4, 13037, Class9.aClass9Array210[anInt857], super.mouseX, 4, super.mouseY, 0);
             else
                 method71(33660);
         if(anInt886 != anInt1026)
             anInt1026 = anInt886;
         anInt886 = 0;
-        if(super.anInt20 > 553 && super.anInt21 > 205 && super.anInt20 < 743 && super.anInt21 < 466)
+        if(super.mouseX > 553 && super.mouseY > 205 && super.mouseX < 743 && super.mouseY < 466)
             if(anInt1189 != -1)
-                method29(553, 13037, Class9.aClass9Array210[anInt1189], super.anInt20, 205, super.anInt21, 0);
+                method29(553, 13037, Class9.aClass9Array210[anInt1189], super.mouseX, 205, super.mouseY, 0);
             else
             if(anIntArray1130[anInt1221] != -1)
-                method29(553, 13037, Class9.aClass9Array210[anIntArray1130[anInt1221]], super.anInt20, 205, super.anInt21, 0);
+                method29(553, 13037, Class9.aClass9Array210[anIntArray1130[anInt1221]], super.mouseX, 205, super.mouseY, 0);
         if(anInt886 != anInt1048)
         {
             aBoolean1153 = true;
             anInt1048 = anInt886;
         }
         anInt886 = 0;
-        if(super.anInt20 > 17 && super.anInt21 > 357 && super.anInt20 < 496 && super.anInt21 < 453)
+        if(super.mouseX > 17 && super.mouseY > 357 && super.mouseX < 496 && super.mouseY < 453)
             if(anInt1276 != -1)
-                method29(17, 13037, Class9.aClass9Array210[anInt1276], super.anInt20, 357, super.anInt21, 0);
+                method29(17, 13037, Class9.aClass9Array210[anInt1276], super.mouseX, 357, super.mouseY, 0);
             else
-            if(super.anInt21 < 434 && super.anInt20 < 426)
-                method74(super.anInt20 - 17, super.anInt21 - 357, 9);
+            if(super.mouseY < 434 && super.mouseX < 426)
+                method74(super.mouseX - 17, super.mouseY - 357, 9);
         if(anInt1276 != -1 && anInt886 != anInt1039)
         {
             aBoolean1223 = true;
@@ -7311,7 +7316,7 @@ processExtraMenus();
                 anInt855 = 0;
                 anInt1133 = 0;
                 aBoolean885 = false;
-                super.anInt18 = 0;
+                super.idleTime = 0;
                 for(int j1 = 0; j1 < 100; j1++)
                     aStringArray944[j1] = null;
 
@@ -9098,8 +9103,8 @@ public static boolean nearby = true;
         if(anInt1276 == -1)
         {
             aClass9_1059.anInt224 = anInt1211 - anInt1089 - 77;
-            if(super.anInt20 > 448 && super.anInt20 < 560 && super.anInt21 > 332)
-                method65(463, 77, super.anInt20 - 17, super.anInt21 - 357, aClass9_1059, 0, false, anInt1211, 0);
+            if(super.mouseX > 448 && super.mouseX < 560 && super.mouseY > 332)
+                method65(463, 77, super.mouseX - 17, super.mouseY - 357, aClass9_1059, 0, false, anInt1211, 0);
             int i = anInt1211 - 77 - aClass9_1059.anInt224;
             if(i < 0)
                 i = 0;
@@ -9395,8 +9400,8 @@ public static boolean nearby = true;
                                     {
                                         if(anInt1086 != 0 && anInt1085 == i3 && anInt1084 == class9_1.anInt250)
                                         {
-                                            k6 = super.anInt20 - anInt1087;
-                                            j7 = super.anInt21 - anInt1088;
+                                            k6 = super.mouseX - anInt1087;
+                                            j7 = super.mouseY - anInt1088;
                                             if(k6 < 5 && k6 > -5)
                                                 k6 = 0;
                                             if(j7 < 5 && j7 > -5)
@@ -10889,12 +10894,12 @@ public static boolean nearby = true;
                 if((k == 3 || k == 7) && (k == 7 || anInt845 == 0 || anInt845 == 1 && method109(false, s)))
                 {
                     int l = 329 - i * 13;
-                    if(super.anInt20 > 4 && super.anInt21 - 4 > l - 10 && super.anInt21 - 4 <= l + 3)
+                    if(super.mouseX > 4 && super.mouseY - 4 > l - 10 && super.mouseY - 4 <= l + 3)
                     {
                         int i1 = aClass30_Sub2_Sub1_Sub4_1271.method383(anInt1116, "From:  " + s + aStringArray944[j]) + 25;
                         if(i1 > 450)
                             i1 = 450;
-                        if(super.anInt20 < 4 + i1)
+                        if(super.mouseX < 4 + i1)
                         {
                             if(anInt863 >= 1)
                             {
@@ -13311,8 +13316,8 @@ if(i18 > 1)
         } else
         {
             Model.anInt1687 = 0;
-            Model.anInt1685 = super.anInt20 - 4;
-            Model.anInt1686 = super.anInt21 - 4;
+            Model.anInt1685 = super.mouseX - 4;
+            Model.anInt1686 = super.mouseY - 4;
             Class30_Sub2_Sub1.method334(aBoolean1206);
             aClass25_946.method313(anInt858, anInt860, anInt862, anInt859, j, anInt861, false);
             aClass25_946.method288((byte)104);

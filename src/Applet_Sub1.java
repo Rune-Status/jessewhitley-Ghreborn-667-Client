@@ -1,8 +1,6 @@
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.PrintStream;
-import sign.signlink;
 
 public class Applet_Sub1 extends Applet
     implements Runnable, MouseListener, MouseMotionListener, KeyListener, FocusListener, WindowListener
@@ -213,20 +211,27 @@ public class Applet_Sub1 extends Applet
         aBoolean16 = true;
         method10((byte)1);
     }
-
+    public boolean mouseWheelDown;
     public final void mousePressed(MouseEvent mouseevent)
     {
-        int i = mouseevent.getX();
-        int j = mouseevent.getY();
+        int x = mouseevent.getX();
+        int y = mouseevent.getY();
+        int type = mouseevent.getButton();
         if(aFrame_Sub1_15 != null)
         {
-            i -= 4;
-            j -= 22;
+            x -= 4;
+            y -= 22;
         }
-        anInt18 = 0;
-        anInt23 = i;
-        anInt24 = j;
+        idleTime = 0;
+        anInt23 = x;
+        anInt24 = y;
         aLong25 = System.currentTimeMillis();
+        if (type == 2) {
+            mouseWheelDown = true;
+            mouseWheelX = x;
+            mouseWheelY = y;
+            return;
+        }
         if(mouseevent.isMetaDown())
         {
             anInt22 = 2;
@@ -242,7 +247,8 @@ public class Applet_Sub1 extends Applet
 
     public final void mouseReleased(MouseEvent mouseevent)
     {
-        anInt18 = 0;
+        mouseWheelDown = false;
+        idleTime = 0;
         anInt19 = 0;
     }
 
@@ -256,25 +262,36 @@ public class Applet_Sub1 extends Applet
 
     public final void mouseExited(MouseEvent mouseevent)
     {
-        anInt18 = 0;
-        anInt20 = -1;
-        anInt21 = -1;
+        idleTime = 0;
+        mouseX = -1;
+        mouseY = -1;
     }
-
-    public final void mouseDragged(MouseEvent mouseevent)
+    public int mouseWheelX;
+    public int mouseWheelY;
+    public final void mouseDragged(MouseEvent e)
     {
-        int i = mouseevent.getX();
-        int j = mouseevent.getY();
+        int x = e.getX();
+        int y = e.getY();
         if(aFrame_Sub1_15 != null)
         {
-            i -= 4;
-            j -= 22;
+            x -= 4;
+            y -= 22;
         }
-        anInt18 = 0;
-        anInt20 = i;
-        anInt21 = j;
+        if (mouseWheelDown) {
+            y = mouseWheelX - e.getX();
+            int k = mouseWheelY - e.getY();
+            mouseWheelDragged(y, -k);
+            mouseWheelX = e.getX();
+            mouseWheelY = e.getY();
+            return;
+        }
+        idleTime = 0;
+        mouseX = x;
+        mouseY = y;
     }
+    void mouseWheelDragged(int param1, int param2) {
 
+    }
     public final void mouseMoved(MouseEvent mouseevent)
     {
         int i = mouseevent.getX();
@@ -284,14 +301,14 @@ public class Applet_Sub1 extends Applet
             i -= 4;
             j -= 22;
         }
-        anInt18 = 0;
-        anInt20 = i;
-        anInt21 = j;
+        idleTime = 0;
+        mouseX = i;
+        mouseY = j;
     }
 
     public final void keyPressed(KeyEvent keyevent)
     {
-        anInt18 = 0;
+        idleTime = 0;
         int i = keyevent.getKeyCode();
         int j = keyevent.getKeyChar();
         if(i == KeyEvent.VK_F12){
@@ -357,7 +374,7 @@ public class Applet_Sub1 extends Applet
 
     public final void keyReleased(KeyEvent keyevent)
     {
-        anInt18 = 0;
+        idleTime = 0;
         int i = keyevent.getKeyCode();
         char c = keyevent.getKeyChar();
         if(c < '\036')
@@ -572,10 +589,10 @@ public class Applet_Sub1 extends Applet
     public Frame_Sub1 aFrame_Sub1_15;
     public boolean aBoolean16;
     public boolean aBoolean17;
-    public int anInt18;
+    public int idleTime;
     public int anInt19;
-    public int anInt20;
-    public int anInt21;
+    public int mouseX;
+    public int mouseY;
     public int anInt22;
     public int anInt23;
     public int anInt24;
