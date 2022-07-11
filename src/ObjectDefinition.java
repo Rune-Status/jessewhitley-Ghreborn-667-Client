@@ -58,7 +58,7 @@ public final class ObjectDefinition {
 		childrenIDs = null;
 	}
 
-	public void method574(Class42_Sub1 class42_sub1, int luls) {
+	public void method574(OnDemandFetcher class42_sub1, int luls) {
 		if (anIntArray773 == null)
 			return;
 		for (int j = 0; j < anIntArray773.length; j++)
@@ -76,13 +76,13 @@ public final class ObjectDefinition {
 	public static void method576(Class44 class30_sub2_sub2Loader) {
         stream = new Stream(class30_sub2_sub2Loader.method571("loc.dat", null), 891);
         Stream class30_sub2_sub2 = new Stream(class30_sub2_sub2Loader.method571("loc.idx", null), 891);
-		int anInt756 = class30_sub2_sub2.method410();
+		int anInt756 = class30_sub2_sub2.readUnsignedShort();
 		System.out.println("667 Object Amount: " + anInt756);
 		streamIndices = new int[anInt756+40000];
 		int i = 2;
 		for (int j = 0; j < anInt756; j++) {
 			streamIndices[j] = i;
-			i += class30_sub2_sub2.method410();
+			i += class30_sub2_sub2.readUnsignedShort();
 		}
 		cache = new ObjectDefinition[20];
 		for (int k = 0; k < 20; k++)
@@ -264,7 +264,7 @@ public final class ObjectDefinition {
 							anIntArray776 = new int[k];
 							anIntArray773 = new int[k];
 							for (int k1 = 0; k1 < k; k1++) {
-								anIntArray773[k1] = stream.method410();
+								anIntArray773[k1] = stream.readUnsignedShort();
 								anIntArray776[k1] = stream.method408();
 							}
 						} else {
@@ -281,7 +281,7 @@ public final class ObjectDefinition {
 							anIntArray776 = null;
 							anIntArray773 = new int[l];
 							for (int l1 = 0; l1 < l; l1++)
-								anIntArray773[l1] = stream.method410();
+								anIntArray773[l1] = stream.readUnsignedShort();
 						} else {
 							;//buffer.currentOffset += l * 2;
 						}
@@ -304,7 +304,7 @@ public final class ObjectDefinition {
 				else if (opcode == 23)
 					aBoolean764 = true;
 				else if (opcode == 24) {
-					animation = stream.method410();
+					animation = stream.readUnsignedShort();
 					if (animation == 65535)
 						animation = -1;
 				} else if (opcode == 28)
@@ -324,23 +324,23 @@ public final class ObjectDefinition {
 					modifiedModelColors = new int[i1];
 					originalModelColors = new int[i1];
 					for (int i2 = 0; i2 < i1; i2++) {
-						modifiedModelColors[i2] = stream.method410();
-						originalModelColors[i2] = stream.method410();
+						modifiedModelColors[i2] = stream.readUnsignedShort();
+						originalModelColors[i2] = stream.readUnsignedShort();
 					}
 				} else if (opcode == 60)
-					anInt746 = stream.method410();
+					anInt746 = stream.readUnsignedShort();
 				else if (opcode == 62)
 					aBoolean751 = true;
 				else if (opcode == 64)
 					aBoolean779 = false;
 				else if (opcode == 65)
-					thickness = stream.method410();
+					thickness = stream.readUnsignedShort();
 				else if (opcode == 66)
-					height = stream.method410();
+					height = stream.readUnsignedShort();
 				else if (opcode == 67)
-					width = stream.method410();
+					width = stream.readUnsignedShort();
 				else if (opcode == 68)
-					anInt758 = stream.method410();
+					anInt758 = stream.readUnsignedShort();
 				else if (opcode == 69)
 					anInt768 = stream.method408();
 				else if (opcode == 70)
@@ -360,16 +360,16 @@ public final class ObjectDefinition {
 				}
 				continue label0;
 			} while (opcode != 77);
-				anInt774 = stream.method410();
+				anInt774 = stream.readUnsignedShort();
 			if (anInt774 == 65535)
 				anInt774 = -1;
-				anInt749 = stream.method410();
+				anInt749 = stream.readUnsignedShort();
 			if (anInt749 == 65535)
 				anInt749 = -1;
 			int j1 = stream.method408();
 			childrenIDs = new int[j1 + 1];
 			for (int j2 = 0; j2 <= j1; j2++) {
-				childrenIDs[j2] = stream.method410();
+				childrenIDs[j2] = stream.readUnsignedShort();
 				if (childrenIDs[j2] == 65535)
 					childrenIDs[j2] = -1;
 			}

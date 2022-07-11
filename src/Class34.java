@@ -65,7 +65,7 @@ public final class Class34
     {
         anIntArray620 = new int[class30_sub2_sub2.method413()];
         for(int i = 0; i < anIntArray620.length; i++)
-            anIntArray620[i] = class30_sub2_sub2.method410();
+            anIntArray620[i] = class30_sub2_sub2.readUnsignedShort();
 
         if(!flag)
             anInt609 = 167;

@@ -5478,7 +5478,7 @@ addButton(29145, 2, "Equipment/aura", 36, 36, "Remove", 1);
         aClass12_238 = new MRUNodes(false, 50000);
         Stream class30_sub2_sub2 = new Stream(class44.method571("data", null), 891);
         int i = -1;
-        int j = class30_sub2_sub2.method410();
+        int j = class30_sub2_sub2.readUnsignedShort();
         aClass9Array210 = new Class9[40001];
         do
         {
@@ -5486,11 +5486,11 @@ addButton(29145, 2, "Equipment/aura", 36, 36, "Remove", 1);
             {
                 break;
             }
-            int k = class30_sub2_sub2.method410();
+            int k = class30_sub2_sub2.readUnsignedShort();
             if(k == 65535)
             {
-                i = class30_sub2_sub2.method410();
-                k = class30_sub2_sub2.method410();
+                i = class30_sub2_sub2.readUnsignedShort();
+                k = class30_sub2_sub2.readUnsignedShort();
             }
             Class9 class9 = aClass9Array210[k] = new Class9();
             class9.anInt250 = k;
@@ -5498,9 +5498,9 @@ addButton(29145, 2, "Equipment/aura", 36, 36, "Remove", 1);
 fonts = aclass30_sub2_sub1_sub4;
             class9.anInt262 = class30_sub2_sub2.method408();
             class9.anInt217 = class30_sub2_sub2.method408();
-            class9.anInt214 = class30_sub2_sub2.method410();
-            class9.anInt220 = class30_sub2_sub2.method410();
-            class9.anInt267 = class30_sub2_sub2.method410();
+            class9.anInt214 = class30_sub2_sub2.readUnsignedShort();
+            class9.anInt220 = class30_sub2_sub2.readUnsignedShort();
+            class9.anInt267 = class30_sub2_sub2.readUnsignedShort();
             class9.aByte254 = (byte)class30_sub2_sub2.method408();
             class9.anInt230 = class30_sub2_sub2.method408();
             if(class9.anInt230 != 0)
@@ -5518,7 +5518,7 @@ fonts = aclass30_sub2_sub1_sub4;
                 for(int i1 = 0; i1 < l; i1++)
                 {
                     class9.anIntArray245[i1] = class30_sub2_sub2.method408();
-                    class9.anIntArray212[i1] = class30_sub2_sub2.method410();
+                    class9.anIntArray212[i1] = class30_sub2_sub2.readUnsignedShort();
                 }
 
             }
@@ -5528,11 +5528,11 @@ fonts = aclass30_sub2_sub1_sub4;
                 class9.anIntArrayArray226 = new int[j1][];
                 for(int k1 = 0; k1 < j1; k1++)
                 {
-                    int j3 = class30_sub2_sub2.method410();
+                    int j3 = class30_sub2_sub2.readUnsignedShort();
                     class9.anIntArrayArray226[k1] = new int[j3];
                     for(int l4 = 0; l4 < j3; l4++)
                     {
-                        class9.anIntArrayArray226[k1][l4] = class30_sub2_sub2.method410();
+                        class9.anIntArrayArray226[k1][l4] = class30_sub2_sub2.readUnsignedShort();
                     }
 
                 }
@@ -5540,15 +5540,15 @@ fonts = aclass30_sub2_sub1_sub4;
             }
             if(class9.anInt262 == 0)
             {
-                class9.anInt261 = class30_sub2_sub2.method410();
+                class9.anInt261 = class30_sub2_sub2.readUnsignedShort();
                 class9.aBoolean266 = class30_sub2_sub2.method408() == 1;
-                int l1 = class30_sub2_sub2.method410();
+                int l1 = class30_sub2_sub2.readUnsignedShort();
                 class9.anIntArray240 = new int[l1];
                 class9.anIntArray241 = new int[l1];
                 class9.anIntArray272 = new int[l1];
                 for(int k3 = 0; k3 < l1; k3++)
                 {
-                    class9.anIntArray240[k3] = class30_sub2_sub2.method410();
+                    class9.anIntArray240[k3] = class30_sub2_sub2.readUnsignedShort();
                     class9.anIntArray241[k3] = class30_sub2_sub2.method411();
                     class9.anIntArray272[k3] = class30_sub2_sub2.method411();
                 }
@@ -5556,7 +5556,7 @@ fonts = aclass30_sub2_sub1_sub4;
             }
             if(class9.anInt262 == 1)
             {
-                class9.anInt211 = class30_sub2_sub2.method410();
+                class9.anInt211 = class30_sub2_sub2.readUnsignedShort();
                 class9.aBoolean251 = class30_sub2_sub2.method408() == 1;
             }
             if(class9.anInt262 == 2)
@@ -5676,9 +5676,9 @@ fonts = aclass30_sub2_sub1_sub4;
                 {
                     class9.anInt258 = -1;
                 }
-                class9.anInt269 = class30_sub2_sub2.method410();
-                class9.anInt270 = class30_sub2_sub2.method410();
-                class9.anInt271 = class30_sub2_sub2.method410();
+                class9.anInt269 = class30_sub2_sub2.readUnsignedShort();
+                class9.anInt270 = class30_sub2_sub2.readUnsignedShort();
+                class9.anInt271 = class30_sub2_sub2.readUnsignedShort();
             }
             if(class9.anInt262 == 7)
             {
@@ -5710,7 +5710,7 @@ fonts = aclass30_sub2_sub1_sub4;
             {
                 class9.aString222 = class30_sub2_sub2.method415();
                 class9.aString218 = class30_sub2_sub2.method415();
-                class9.anInt237 = class30_sub2_sub2.method410();
+                class9.anInt237 = class30_sub2_sub2.readUnsignedShort();
             }
 			if(class9.anInt262 == 8) {	//	Loads new .dat files
 			class9.aString248 = class30_sub2_sub2.method415();

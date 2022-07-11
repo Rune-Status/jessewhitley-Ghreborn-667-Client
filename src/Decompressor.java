@@ -1,10 +1,10 @@
 import java.io.*;
 import sign.signlink;
 
-public final class Class14
+public final class Decompressor
 {
 
-    public Class14(int i, RandomAccessFile randomaccessfile, RandomAccessFile randomaccessfile1, int j, boolean flag)
+    public Decompressor(int i, RandomAccessFile randomaccessfile, RandomAccessFile randomaccessfile1, int j, boolean flag)
     {
         anInt306 = 923;
         aBoolean307 = true;

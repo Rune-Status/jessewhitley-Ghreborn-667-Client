@@ -262,13 +262,13 @@ private int currentcolors;
     public static final void method193(Class44 class44) {
         aClass30_Sub2_Sub2_183 = new Stream(class44.method571("obj.dat", null), 891);
         Stream class30_sub2_sub2 = new Stream(class44.method571("obj.idx", null), 891);
-        anInt203 = class30_sub2_sub2.method410();
+        anInt203 = class30_sub2_sub2.readUnsignedShort();
         anIntArray195 = new int[anInt203+400000];
         int i = 2;
         for(int j = 0; j < anInt203; j++)
         {
             anIntArray195[j] = i;
-            i += class30_sub2_sub2.method410();
+            i += class30_sub2_sub2.readUnsignedShort();
         }
 
         aClass8Array172 = new Class8[10];
@@ -2174,7 +2174,7 @@ private void method203(boolean flag, Stream class30_sub2_sub2)
 			if(i == 0)
 				return;
 			if(i == 1)
-				anInt174 = class30_sub2_sub2.method410();
+				anInt174 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 2)
 				aString170 = class30_sub2_sub2.method415();
@@ -2183,28 +2183,28 @@ private void method203(boolean flag, Stream class30_sub2_sub2)
 				aByteArray178 =  class30_sub2_sub2.method416((byte)30);
 			else
 			if(i == 4)
-				anInt181 = class30_sub2_sub2.method410();
+				anInt181 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 5)
-				anInt190 = class30_sub2_sub2.method410();
+				anInt190 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 6)
-				anInt198 = class30_sub2_sub2.method410();
+				anInt198 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 7)
 			{
-				anInt169 = class30_sub2_sub2.method410();
+				anInt169 = class30_sub2_sub2.readUnsignedShort();
 				if(anInt169 > 32767)
 					anInt169 -= 0x10000;
 			} else
 			if(i == 8)
 			{
-				anInt194 = class30_sub2_sub2.method410();
+				anInt194 = class30_sub2_sub2.readUnsignedShort();
 				if(anInt194 > 32767)
 					anInt194 -= 0x10000;
 			} else
 			if(i == 10)
-				class30_sub2_sub2.method410();
+				class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 11)
 				aBoolean176 = true;
@@ -2218,19 +2218,19 @@ private void method203(boolean flag, Stream class30_sub2_sub2)
 			else
 			if(i == 23)
 			{
-				anInt165 = class30_sub2_sub2.method410();
+				anInt165 = class30_sub2_sub2.readUnsignedShort();
 				aByte205 = class30_sub2_sub2.method409();
 			} else
 			if(i == 24)
-				anInt188 = class30_sub2_sub2.method410();
+				anInt188 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 25)
 			{
-				anInt200 = class30_sub2_sub2.method410();
+				anInt200 = class30_sub2_sub2.readUnsignedShort();
 				aByte154 = class30_sub2_sub2.method409();
 			} else
 			if(i == 26)
-				anInt164 = class30_sub2_sub2.method410();
+				anInt164 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i >= 30 && i < 35)
 			{
@@ -2253,37 +2253,37 @@ private void method203(boolean flag, Stream class30_sub2_sub2)
 				anIntArray160 = new int[j];
 				for(int k = 0; k < j; k++)
 				{
-					anIntArray156[k] = class30_sub2_sub2.method410();
-					anIntArray160[k] = class30_sub2_sub2.method410();
+					anIntArray156[k] = class30_sub2_sub2.readUnsignedShort();
+					anIntArray160[k] = class30_sub2_sub2.readUnsignedShort();
 				}
 
 			} else
 			if(i == 78)
-				anInt185 = class30_sub2_sub2.method410();
+				anInt185 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 79)
-				anInt162 = class30_sub2_sub2.method410();
+				anInt162 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 90)
-				anInt175 = class30_sub2_sub2.method410();
+				anInt175 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 91)
-				anInt197 = class30_sub2_sub2.method410();
+				anInt197 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 92)
-				anInt166 = class30_sub2_sub2.method410();
+				anInt166 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 93)
-				anInt173 = class30_sub2_sub2.method410();
+				anInt173 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 95)
-				anInt204 = class30_sub2_sub2.method410();
+				anInt204 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 97)
-				anInt179 = class30_sub2_sub2.method410();
+				anInt179 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 98)
-				anInt163 = class30_sub2_sub2.method410();
+				anInt163 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i >= 100 && i < 110)
 			{
@@ -2292,17 +2292,17 @@ private void method203(boolean flag, Stream class30_sub2_sub2)
 					anIntArray193 = new int[10];
 					anIntArray201 = new int[10];
 				}
-				anIntArray193[i - 100] = class30_sub2_sub2.method410();
-				anIntArray201[i - 100] = class30_sub2_sub2.method410();
+				anIntArray193[i - 100] = class30_sub2_sub2.readUnsignedShort();
+				anIntArray201[i - 100] = class30_sub2_sub2.readUnsignedShort();
 			} else
 			if(i == 110)
-				anInt167 = class30_sub2_sub2.method410();
+				anInt167 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 111)
-				anInt192 = class30_sub2_sub2.method410();
+				anInt192 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 112)
-				anInt191 = class30_sub2_sub2.method410();
+				anInt191 = class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 113)
 				anInt196 = class30_sub2_sub2.method409();
@@ -2314,10 +2314,10 @@ private void method203(boolean flag, Stream class30_sub2_sub2)
 				anInt202 = class30_sub2_sub2.method408();
 			else
 			if(i == 121)
-				class30_sub2_sub2.method410();
+				class30_sub2_sub2.readUnsignedShort();
 			else
 			if(i == 122)
-				class30_sub2_sub2.method410();
+				class30_sub2_sub2.readUnsignedShort();
 		} while(true);
 	}
 

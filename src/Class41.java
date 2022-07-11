@@ -5,7 +5,7 @@ public class Class41
     {
         Stream class30_sub2_sub2 = new Stream(class44.method571("varp.dat", null), 891);
         anInt702 = 0;
-        anInt700 = class30_sub2_sub2.method410();
+        anInt700 = class30_sub2_sub2.readUnsignedShort();
         if(aClass41Array701 == null)
             aClass41Array701 = new Class41[anInt700];
         if(anIntArray703 == null)
@@ -47,7 +47,7 @@ public class Class41
                 aBoolean708 = false;
             else
             if(j == 5)
-                anInt709 = class30_sub2_sub2.method410();
+                anInt709 = class30_sub2_sub2.readUnsignedShort();
             else
             if(j == 6)
                 aBoolean710 = true;

@@ -25,7 +25,7 @@ public final class Class30_Sub2_Sub1_Sub4 extends Class30_Sub2_Sub1
         byte byte0 = -1;
         if(i != 0)
             aBoolean1490 = !aBoolean1490;
-        class30_sub2_sub2_1.anInt1406 = class30_sub2_sub2.method410() + 4;
+        class30_sub2_sub2_1.anInt1406 = class30_sub2_sub2.readUnsignedShort() + 4;
         int k = class30_sub2_sub2_1.method408();
         if(k > 0)
             class30_sub2_sub2_1.anInt1406 += 3 * (k - 1);
@@ -34,8 +34,8 @@ public final class Class30_Sub2_Sub1_Sub4 extends Class30_Sub2_Sub1
             int j = l;
             anIntArray1494[l] = class30_sub2_sub2_1.method408();
             anIntArray1495[l] = class30_sub2_sub2_1.method408();
-            int i1 = anIntArray1492[l] = class30_sub2_sub2_1.method410();
-            int j1 = anIntArray1493[l] = class30_sub2_sub2_1.method410();
+            int i1 = anIntArray1492[l] = class30_sub2_sub2_1.readUnsignedShort();
+            int j1 = anIntArray1493[l] = class30_sub2_sub2_1.readUnsignedShort();
             int k1 = class30_sub2_sub2_1.method408();
             int l1 = i1 * j1;
             aByteArrayArray1491[l] = new byte[l1];

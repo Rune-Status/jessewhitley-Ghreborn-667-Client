@@ -159,9 +159,9 @@ public Class30_Sub2_Sub1_Sub1(String s)
 		aBoolean1438 = false;
 		Stream class30_sub2_sub2 = new Stream(class44.method571((new StringBuilder()).append(s).append(".dat").toString(), ((byte []) (null))), 891);
 		Stream class30_sub2_sub2_1 = new Stream(class44.method571("index.dat", ((byte []) (null))), 891);
-		class30_sub2_sub2_1.anInt1406 = class30_sub2_sub2.method410();
-		anInt1444 = class30_sub2_sub2_1.method410();
-		anInt1445 = class30_sub2_sub2_1.method410();
+		class30_sub2_sub2_1.anInt1406 = class30_sub2_sub2.readUnsignedShort();
+		anInt1444 = class30_sub2_sub2_1.readUnsignedShort();
+		anInt1445 = class30_sub2_sub2_1.readUnsignedShort();
 		int j = class30_sub2_sub2_1.method408();
 		int ai[] = new int[j];
 		for (int k = 0; k < j - 1; k++)
@@ -174,14 +174,14 @@ public Class30_Sub2_Sub1_Sub1(String s)
 		for (int l = 0; l < i; l++)
 		{
 			class30_sub2_sub2_1.anInt1406 += 2;
-			class30_sub2_sub2.anInt1406 += class30_sub2_sub2_1.method410() * class30_sub2_sub2_1.method410();
+			class30_sub2_sub2.anInt1406 += class30_sub2_sub2_1.readUnsignedShort() * class30_sub2_sub2_1.readUnsignedShort();
 			class30_sub2_sub2_1.anInt1406++;
 		}
 
 		anInt1442 = class30_sub2_sub2_1.method408();
 		anInt1443 = class30_sub2_sub2_1.method408();
-		anInt1440 = class30_sub2_sub2_1.method410();
-		anInt1441 = class30_sub2_sub2_1.method410();
+		anInt1440 = class30_sub2_sub2_1.readUnsignedShort();
+		anInt1441 = class30_sub2_sub2_1.readUnsignedShort();
 		int i1 = class30_sub2_sub2_1.method408();
 		int j1 = anInt1440 * anInt1441;
 		anIntArray1439 = new int[j1];

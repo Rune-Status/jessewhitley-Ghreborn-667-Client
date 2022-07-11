@@ -4,7 +4,7 @@ import java.util.zip.CRC32;
 import java.util.zip.GZIPInputStream;
 import sign.signlink;
 
-public class Class42_Sub1 extends Class42
+public class OnDemandFetcher extends OnDemandFetcherParent
     implements Runnable
 {
 
@@ -28,17 +28,14 @@ public class Class42_Sub1 extends Class42
 		return 65535;
     }
 
-    private final void method550(int i)
-    {
-        if(i >= 0)
-            aBoolean1336 = !aBoolean1336;
-        try
-        {
+    private final void readData() {
+        try {
             int j = anInputStream1362.available();
             if(anInt1347 == 0 && j >= 6)
             {
                 aBoolean1357 = true;
-                for(int k = 0; k < 6; k += anInputStream1362.read(aByteArray1339, k, 6 - k));
+                for(int k = 0; k < 6; k += anInputStream1362.read(aByteArray1339, k, 6 - k))
+                    ;
                 int l = aByteArray1339[0] & 0xff;
                 int j1 = ((aByteArray1339[1] & 0xff) << 8) + (aByteArray1339[2] & 0xff);
                 int l1 = ((aByteArray1339[3] & 0xff) << 8) + (aByteArray1339[4] & 0xff);
@@ -132,75 +129,24 @@ public class Class42_Sub1 extends Class42
 public int mapAmount = 0;
 
 
-    public final void method551(Class44 class44, client client1)
-    {
-        String as[] = {
-            "model_version", "anim_version", "midi_version", "map_version"
-        };
-        for(int i = 0; i < 4; i++)
-        {
-            byte abyte0[] = class44.method571(as[i], null);
-            int j = abyte0.length / 2;
-            Stream class30_sub2_sub2 = new Stream(abyte0, 891);
-            anIntArrayArray1364[i] = new int[j];
-            aByteArrayArray1342[i] = new byte[j];
-            for(int l = 0; l < j; l++)
-                anIntArrayArray1364[i][l] = class30_sub2_sub2.method410();
-
-        }
-
-        String as1[] = {
-            "model_crc", "anim_crc", "midi_crc", "map_crc"
-        };
-        for(int k = 0; k < 4; k++)
-        {
-            byte abyte1[] = class44.method571(as1[k], null);
-            int i1 = abyte1.length / 4;
-            Stream class30_sub2_sub2_1 = new Stream(abyte1, 891);
-            anIntArrayArray1365[k] = new int[i1];
-            for(int l1 = 0; l1 < i1; l1++)
-                anIntArrayArray1365[k][l1] = class30_sub2_sub2_1.method413();
-
-        }
-
-        byte abyte2[] = class44.method571("model_index", null);
-        int j1 = anIntArrayArray1364[0].length;
-        aByteArray1372 = new byte[j1];
-        for(int k1 = 0; k1 < j1; k1++)
-            if(k1 < abyte2.length)
-                aByteArray1372[k1] = abyte2[k1];
-            else
-                aByteArray1372[k1] = 0;
-
-        abyte2 = class44.method571("map_index", null);
+    public final void start(Class44 class44, client client1) {
+        byte abyte2[] = class44.method571("map_index", null);
         Stream class30_sub2_sub2_2 = new Stream(abyte2, 891);
-        j1 = abyte2.length / 7;
-        anIntArray1371 = new int[j1];
-        anIntArray1350 = new int[j1];
-        anIntArray1337 = new int[j1];
-        anIntArray1356 = new int[j1];
-        for(int i2 = 0; i2 < j1; i2++)
-        {
-            anIntArray1371[i2] = class30_sub2_sub2_2.method410();
-            anIntArray1350[i2] = class30_sub2_sub2_2.method410();
-            anIntArray1337[i2] = class30_sub2_sub2_2.method410();
-            anIntArray1356[i2] = class30_sub2_sub2_2.method408();
+        int j1 = class30_sub2_sub2_2.readUnsignedShort();
+        mapIndices1 = new int[j1];
+        mapIndices2 = new int[j1];
+        mapIndices3 = new int[j1];
+        for(int i2 = 0; i2 < j1; i2++) {
+            mapIndices1[i2] = class30_sub2_sub2_2.readUnsignedShort();
+            mapIndices2[i2] = class30_sub2_sub2_2.readUnsignedShort();
+            mapIndices3[i2] = class30_sub2_sub2_2.readUnsignedShort();
         }
-
-        abyte2 = class44.method571("anim_index", null);
-        class30_sub2_sub2_2 = new Stream(abyte2, 891);
-        j1 = abyte2.length / 2;
-        anIntArray1360 = new int[j1];
-        for(int j2 = 0; j2 < j1; j2++)
-            anIntArray1360[j2] = class30_sub2_sub2_2.method410();
-
         abyte2 = class44.method571("midi_index", null);
         class30_sub2_sub2_2 = new Stream(abyte2, 891);
         j1 = abyte2.length;
         anIntArray1348 = new int[j1];
         for(int k2 = 0; k2 < j1; k2++)
             anIntArray1348[k2] = class30_sub2_sub2_2.method408();
-
         aClient1343 = client1;
         aBoolean1353 = true;
         aClient1343.method12(this, 2);
@@ -222,14 +168,14 @@ public int mapAmount = 0;
 
     public final void method554(boolean flag, int i)
     {
-        int j = anIntArray1371.length;
+        int j = mapIndices1.length;
         if(i != 0)
             anInt1345 = 20;
         for(int k = 0; k < j; k++)
             if(flag || anIntArray1356[k] != 0)
             {
-                method563((byte)2, 3, anIntArray1337[k], (byte)8);
-                method563((byte)2, 3, anIntArray1350[k], (byte)8);
+                method563((byte)2, 3, mapIndices3[k], (byte)8);
+                method563((byte)2, 3, mapIndices2[k], (byte)8);
             }
 
     }
@@ -238,7 +184,7 @@ public int mapAmount = 0;
     {
         if(i <= 0)
             aBoolean1355 = !aBoolean1355;
-			int returnable = anIntArrayArray1364[j].length;
+			int returnable = versions[j].length;
        return returnable;
 	   // return anIntArrayArray1364[j].length;
     }
@@ -296,15 +242,12 @@ public int mapAmount = 0;
     {
         if(i != 0)
             anInt1352 = -76;
-        return anIntArray1360.length;
+        return 65565;
     }
 
     public final void method558(int i, int j)
     {
-        if(i < 0 || i > anIntArrayArray1364.length || j < 0 || j > anIntArrayArray1364[i].length)
-            return;
-        if(anIntArrayArray1364[i][j] == 0)
-            return;
+
         synchronized(aClass2_1361)
         {
             for(Class30_Sub2_Sub3 class30_sub2_sub3 = (Class30_Sub2_Sub3)aClass2_1361.method152(); class30_sub2_sub3 != null; class30_sub2_sub3 = (Class30_Sub2_Sub3)aClass2_1361.method153(false))
@@ -323,11 +266,8 @@ public int mapAmount = 0;
         }
     }
 
-    public final int method559(int i, int j)
-    {
-        if(j >= 0)
-            anInt1345 = -7;
-        return aByteArray1372[i] & 0xff;
+    public final int method559(int i) {
+        return 65565;
     }
 
     public final void run()
@@ -352,12 +292,12 @@ public int mapAmount = 0;
                         break;
                     aBoolean1357 = false;
                     method567(true);
-                    method565(false);
+                    //method565(false);
                     if(anInt1366 == 0 && j >= 5)
                         break;
                     method568((byte)-56);
                     if(anInputStream1362 != null)
-                        method550(-369);
+                        readData();
                 }
 
                 boolean flag = false;
@@ -440,10 +380,6 @@ public int mapAmount = 0;
     {
         if(aClient1343.aClass14Array970[0] == null)
             return;
-        if(anIntArrayArray1364[j][i] == 0)
-            return;
-        if(aByteArrayArray1342[j][i] == 0)
-            return;
         if(anInt1332 == 0)
             return;
         Class30_Sub2_Sub3 class30_sub2_sub3 = new Class30_Sub2_Sub3();
@@ -503,12 +439,12 @@ public int mapAmount = 0;
         if(j != 0)
             return anInt1345;
         int i1 = (l << 8) + k;
-        for(int j1 = 0; j1 < anIntArray1371.length; j1++)
-            if(anIntArray1371[j1] == i1)
+        for(int j1 = 0; j1 < mapIndices1.length; j1++)
+            if(mapIndices1[j1] == i1)
                 if(i == 0)
-                    return anIntArray1350[j1];
+                    return mapIndices2[j1];
                 else
-                    return anIntArray1337[j1];
+                    return mapIndices3[j1];
 
         return -1;
     }
@@ -526,13 +462,6 @@ public int mapAmount = 0;
             anInt1340 = 237;
         if(aClient1343.aClass14Array970[0] == null)
             return;
-        if(anIntArrayArray1364[i][j] == 0)
-            return;
-        byte abyte0[] = aClient1343.aClass14Array970[i + 1].method233(true, j);
-      //  if(method549(anIntArrayArray1364[i][j], (byte)3, anIntArrayArray1365[i][j], abyte0))
-          //  return;
-      //  aByteArrayArray1342[i][j] = byte0;
-        if(byte0 > anInt1332)
             anInt1332 = byte0;
         anInt1330++;
     }
@@ -541,8 +470,8 @@ public int mapAmount = 0;
     {
         while(j >= 0) 
             throw new NullPointerException();
-        for(int k = 0; k < anIntArray1371.length; k++)
-            if(anIntArray1337[k] == i)
+        for(int k = 0; k < mapIndices1.length; k++)
+            if(mapIndices3[k] == i)
                 return true;
 
         return false;
@@ -693,7 +622,7 @@ public int mapAmount = 0;
         return anIntArray1348[i] == 1;
     }
 
-    public Class42_Sub1()
+    public OnDemandFetcher()
     {
         aClass19_1331 = new Class19(169);
         aString1333 = "";
@@ -710,7 +639,7 @@ public int mapAmount = 0;
         aClass19_1358 = new Class19(169);
         aByteArray1359 = new byte[65000];
         aClass2_1361 = new Class2(anInt1345);
-        anIntArrayArray1364 = new int[4][];
+        versions = new int[4][];
         anIntArrayArray1365 = new int[4][];
         aClass19_1368 = new Class19(169);
         aClass19_1370 = new Class19(169);
@@ -723,7 +652,7 @@ public int mapAmount = 0;
     private int anInt1334;
     private long aLong1335;
     private boolean aBoolean1336;
-    private int anIntArray1337[];
+    private int mapIndices3[];
     private CRC32 aCRC32_1338;
     private byte aByteArray1339[];
     private int anInt1340;
@@ -736,7 +665,7 @@ public int mapAmount = 0;
     private int anInt1347;
     private int anIntArray1348[];
     public int anInt1349;
-    private int anIntArray1350[];
+    private int mapIndices2[];
     private int anInt1351;
     private int anInt1352;
     private boolean aBoolean1353;
@@ -750,14 +679,14 @@ public int mapAmount = 0;
     private Class2 aClass2_1361;
     private InputStream anInputStream1362;
     private Socket aSocket1363;
-    private int anIntArrayArray1364[][];
+    private int versions[][];
     private int anIntArrayArray1365[][];
     private int anInt1366;
     private int anInt1367;
     private Class19 aClass19_1368;
     private Class30_Sub2_Sub3 aClass30_Sub2_Sub3_1369;
     private Class19 aClass19_1370;
-    private int anIntArray1371[];
-    private byte aByteArray1372[];
+    private int mapIndices1[];
+    private byte modelIndices[];
     private int anInt1373;
 }

@@ -227,7 +227,7 @@ public final class Stream extends Class30_Sub2
         return aByteArray1405[anInt1406++];
     }
 
-    public int method410()
+    public int readUnsignedShort()
     {
 
 
@@ -341,7 +341,7 @@ public final class Stream extends Class30_Sub2
         if(i < 128)
             return method408() - 64;
         else
-            return method410() - 49152;
+            return readUnsignedShort() - 49152;
     }
 
     public int method422()
@@ -350,7 +350,7 @@ public final class Stream extends Class30_Sub2
         if(i < 128)
             return method408();
         else
-            return method410() - 32768;
+            return readUnsignedShort() - 32768;
     }
 
     public void method423(BigInteger biginteger, BigInteger biginteger1, byte byte0)

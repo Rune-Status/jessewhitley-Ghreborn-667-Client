@@ -25,8 +25,8 @@ public class Class29
         anIntArray537 = new int[anInt535];
         for(int i = 0; i < anInt535; i++)
         {
-            anIntArray536[i] = class30_sub2_sub2.method410();
-            anIntArray537[i] = class30_sub2_sub2.method410();
+            anIntArray536[i] = class30_sub2_sub2.readUnsignedShort();
+            anIntArray537[i] = class30_sub2_sub2.readUnsignedShort();
         }
 
     }

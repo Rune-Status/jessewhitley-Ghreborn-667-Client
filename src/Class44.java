@@ -37,7 +37,7 @@ public final class Class44
             aByteArray726 = abyte0;
             aBoolean732 = false;
         }
-        anInt727 = class30_sub2_sub2.method410();
+        anInt727 = class30_sub2_sub2.readUnsignedShort();
         if(byte0 != 0)
             return;
         anIntArray728 = new int[anInt727];

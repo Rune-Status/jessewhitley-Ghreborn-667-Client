@@ -8,7 +8,7 @@ public class Class23
     public static void method264(int i, Class44 class44)
     {
         Stream class30_sub2_sub2 = new Stream(class44.method571("spotanim.dat", null));
-        anInt402 = class30_sub2_sub2.method410();
+        anInt402 = class30_sub2_sub2.readUnsignedShort();
         if(aClass23Array403 == null)
             aClass23Array403 = new Class23[anInt402];
         for(int j = 0; j < anInt402; j++)
@@ -25,17 +25,17 @@ private void method265(Stream class30_sub2_sub2) {
 			if (i == 0)
 				return;
 			if (i == 1)
-				anInt405 = class30_sub2_sub2.method410();
+				anInt405 = class30_sub2_sub2.readUnsignedShort();
 			else if (i == 2) {
-				anInt406 = class30_sub2_sub2.method410();
+				anInt406 = class30_sub2_sub2.readUnsignedShort();
 				if (Class20.aClass20Array351 != null)
 					aClass20_407 = Class20.aClass20Array351[anInt406];
 			} else if (i == 4)
-				anInt410 = class30_sub2_sub2.method410();
+				anInt410 = class30_sub2_sub2.readUnsignedShort();
 			else if (i == 5)
-				anInt411 = class30_sub2_sub2.method410();
+				anInt411 = class30_sub2_sub2.readUnsignedShort();
 			else if (i == 6)
-				anInt412 = class30_sub2_sub2.method410();
+				anInt412 = class30_sub2_sub2.readUnsignedShort();
 			else if (i == 7)
 				anInt413 = class30_sub2_sub2.method408();
 			else if (i == 8)
@@ -43,8 +43,8 @@ private void method265(Stream class30_sub2_sub2) {
 			else if (i == 40) {
 				int j = class30_sub2_sub2.method408();
 				for (int k = 0; k < j; k++) {
-					anIntArray408[k] = class30_sub2_sub2.method410();
-					anIntArray409[k] = class30_sub2_sub2.method410();
+					anIntArray408[k] = class30_sub2_sub2.readUnsignedShort();
+					anIntArray409[k] = class30_sub2_sub2.readUnsignedShort();
 				}
 			} else
 				System.out.println("Error unrecognised spotanim config code: "

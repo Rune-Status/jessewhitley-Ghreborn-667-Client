@@ -1,4 +1,4 @@
-final class Class7 {
+final class ObjectManager {
 
 	private static int anInt123 = (int)(Math.random() * 17D) - 8;
 	private int anIntArray124[];
@@ -40,7 +40,7 @@ final class Class7 {
 	};
 	private static int anInt153 = -388;
 
-	public Class7(byte abyte0[][][], int i, int j, int k, int ai[][][]) {
+	public ObjectManager(byte abyte0[][][], int i, int j, int k, int ai[][][]) {
 		aBoolean132 = true;
 		aBoolean143 = false;
 		anInt150 = -53;
@@ -469,7 +469,7 @@ final class Class7 {
 		return k;
 	}
 
-	public static final void method173(byte byte0, Stream class30_sub2_sub2, Class42_Sub1 class42_sub1) {
+	public static final void method173(byte byte0, Stream class30_sub2_sub2, OnDemandFetcher class42_sub1) {
 		label0:
 		{
 			int i = -1;

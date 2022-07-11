@@ -85,15 +85,15 @@ public class Class39
         anIntArray665[1] = i & 0xf;
         if(i != 0)
         {
-            anIntArray668[0] = class30_sub2_sub2.method410();
-            anIntArray668[1] = class30_sub2_sub2.method410();
+            anIntArray668[0] = class30_sub2_sub2.readUnsignedShort();
+            anIntArray668[1] = class30_sub2_sub2.readUnsignedShort();
             int j = class30_sub2_sub2.method408();
             for(int k = 0; k < 2; k++)
             {
                 for(int l = 0; l < anIntArray665[k]; l++)
                 {
-                    anIntArrayArrayArray666[k][0][l] = class30_sub2_sub2.method410();
-                    anIntArrayArrayArray667[k][0][l] = class30_sub2_sub2.method410();
+                    anIntArrayArrayArray666[k][0][l] = class30_sub2_sub2.readUnsignedShort();
+                    anIntArrayArrayArray667[k][0][l] = class30_sub2_sub2.readUnsignedShort();
                 }
 
             }
@@ -103,8 +103,8 @@ public class Class39
                 for(int j1 = 0; j1 < anIntArray665[i1]; j1++)
                     if((j & 1 << i1 * 4 << j1) != 0)
                     {
-                        anIntArrayArrayArray666[i1][1][j1] = class30_sub2_sub2.method410();
-                        anIntArrayArrayArray667[i1][1][j1] = class30_sub2_sub2.method410();
+                        anIntArrayArrayArray666[i1][1][j1] = class30_sub2_sub2.readUnsignedShort();
+                        anIntArrayArrayArray667[i1][1][j1] = class30_sub2_sub2.readUnsignedShort();
                     } else
                     {
                         anIntArrayArrayArray666[i1][1][j1] = anIntArrayArrayArray666[i1][0][j1];

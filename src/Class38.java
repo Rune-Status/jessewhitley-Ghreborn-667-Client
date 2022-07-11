@@ -4,7 +4,7 @@ public class Class38
     public static void method535(int i, Class44 class44)
     {
         Stream class30_sub2_sub2 = new Stream(class44.method571("idk.dat", null));
-        anInt655 = class30_sub2_sub2.method410();
+        anInt655 = class30_sub2_sub2.readUnsignedShort();
         if(aClass38Array656 == null)
             aClass38Array656 = new Class38[anInt655];
         for(int j = 0; j < anInt655; j++)
@@ -29,16 +29,16 @@ public class Class38
 				int j = class30_sub2_sub2.method408();
 				anIntArray658 = new int[j];
 				for (int k = 0; k < j; k++)
-					anIntArray658[k] = class30_sub2_sub2.method410();
+					anIntArray658[k] = class30_sub2_sub2.readUnsignedShort();
 
 			} else if (i == 3)
 				aBoolean662 = true;
 			else if (i >= 40 && i < 50)
-				anIntArray659[i - 40] = class30_sub2_sub2.method410();
+				anIntArray659[i - 40] = class30_sub2_sub2.readUnsignedShort();
 			else if (i >= 50 && i < 60)
-				anIntArray660[i - 50] = class30_sub2_sub2.method410();
+				anIntArray660[i - 50] = class30_sub2_sub2.readUnsignedShort();
 			else if (i >= 60 && i < 70)
-				anIntArray661[i - 60] = class30_sub2_sub2.method410();
+				anIntArray661[i - 60] = class30_sub2_sub2.readUnsignedShort();
 			else
 				System.out.println("Error unrecognised idk config code: " + i);
 		} while (true);

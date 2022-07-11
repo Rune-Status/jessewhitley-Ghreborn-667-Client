@@ -17,14 +17,13 @@ public class Class36
 	else
 		return FileOperations.ReadFile(signlink.findcachedir() +"/skinlist/"+i2+".dat");
 	}
-    public static void load(int file)
+    public static void load(int file, byte[] array)
     {
     try {
 	
-        Stream class30_sub2_sub2_1 = new Stream(getData(0, file));
-        Stream class30_sub2_sub2_18 = new Stream(getData(1, file));
-		Class18 class18 = new Class18(class30_sub2_sub2_18,0);
-        int k1 = class30_sub2_sub2_1.method410();
+        Stream class30_sub2_sub2_1 = new Stream(array);
+		Class18 class18 = new Class18(class30_sub2_sub2_1);
+        int k1 = class30_sub2_sub2_1.readUnsignedShort();
 		animationlist[file] = new Class36[k1];
         int ai[] = new int[500];
         int ai1[] = new int[500];
@@ -32,7 +31,7 @@ public class Class36
         int ai3[] = new int[500];
         for(int l1 = 0; l1 < k1; l1++)
         {
-            int i2 = class30_sub2_sub2_1.method410();
+            int i2 = class30_sub2_sub2_1.readUnsignedShort();
             Class36 class36 = animationlist[file][i2] = new Class36();
             class36.aClass18_637 = class18;
             int j2 = class30_sub2_sub2_1.method408();
@@ -103,22 +102,22 @@ public class Class36
             anInt634 = 90;
         aClass36Array635 = null;
     }
-    public static Class36 method531(int i, int j)
-    {
-        if(i != 9)
-            throw new NullPointerException();
-        if(animationlist == null)
+    public static Class36 method531(int int1) {
+        try {
+            final String hexString;
+            final int int2 = Integer.parseInt((hexString = Integer.toHexString(int1)).substring(0, hexString.length() - 4), 16);
+            int1 = Integer.parseInt(hexString.substring(hexString.length() - 4), 16);
+            if (animationlist[int2].length == 0) {
+                clientInstance.aClass42_Sub1_1068.method558(1, int2);
+                return null;
+            }
+            return animationlist[int2][int1];
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
             return null;
-	String hex = Integer.toHexString(j);
-	int file = Integer.parseInt(hex.substring(0,(hex.length()-4)), 16);
-	int frame = Integer.parseInt(hex.substring((hex.length()-4)), 16);
-	if(animationlist[file].length == 0)
-          load(file);
-
-		  return animationlist[file][frame];
+        }
     }
-
-
     public static boolean method532(int i, boolean flag)
     {
         if(flag)
@@ -140,5 +139,5 @@ public class Class36
     public int anIntArray640[];
     public int anIntArray641[];
     public int anIntArray642[];
-
+    public static client clientInstance;
 }

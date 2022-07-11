@@ -6,7 +6,7 @@ public class Class22
         if(i != 0)
             anInt386 = 115;
         Stream class30_sub2_sub2 = new Stream(class44.method571("flo.dat", null));
-        anInt387 = class30_sub2_sub2.method410();
+        anInt387 = class30_sub2_sub2.readUnsignedShort();
         if(aClass22Array388 == null)
             aClass22Array388 = new Class22[anInt387];
         for(int j = 0; j < anInt387; j++)

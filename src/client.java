@@ -26,6 +26,7 @@ public final class client extends Applet_Sub1 {
  	private boolean applyOrbs = true;
 	private boolean orbHp = true;
 	private boolean orbPray = true;
+    public static boolean controlIsDown;
 
 private boolean counterOn = false;
 	private boolean orbRun = true;
@@ -562,7 +563,7 @@ public final void init()
 			aBoolean959 = true;
 			signlink.storeid = 32;
 			signlink.startpriv(InetAddress.getLocalHost());
-			setserver("ghr.no-ip.info", "29432");
+			setserver("127.0.0.1", "29432");
 			method2(503, false, 765);
 		}
 		catch (Exception exception)
@@ -570,6 +571,46 @@ public final void init()
 			return;
 		}
 	}
+    public String indexLocation(int cacheIndex, int index) {
+        return signlink.findcachedir() + "index" + cacheIndex + "/" + (index != -1 ? index + ".gz" : "");
+    }
+
+    public void repackCacheIndex(int cacheIndex) {
+        System.out.println("Started repacking index " + cacheIndex + ".");
+        int indexLength = new File(indexLocation(cacheIndex, -1)).listFiles().length;
+        File[] file = new File(indexLocation(cacheIndex, -1)).listFiles();
+        try {
+            for (int index = 0; index < indexLength; index++) {
+                int fileIndex = Integer.parseInt(getFileNameWithoutExtension(file[index].toString()));
+                byte[] data = fileToByteArray(cacheIndex, fileIndex);
+                if(data != null && data.length > 0) {
+                    aClass14Array970[cacheIndex].method234(data.length, data, fileIndex);
+                    System.out.println("Repacked " + fileIndex + ".");
+                } else {
+                    System.out.println("Unable to locate index " + fileIndex + ".");
+                }
+            }
+        } catch(Exception e) {
+            System.out.println("Error packing cache index " + cacheIndex + ".");
+        }
+        System.out.println("Finished repacking " + cacheIndex + ".");
+    }
+
+    public byte[] fileToByteArray(int cacheIndex, int index) {
+        try {
+            if (indexLocation(cacheIndex, index).length() <= 0 || indexLocation(cacheIndex, index) == null) {
+                return null;
+            }
+            File file = new File(indexLocation(cacheIndex, index));
+            byte[] fileData = new byte[(int)file.length()];
+            FileInputStream fis = new FileInputStream(file);
+            fis.read(fileData);
+            fis.close();
+            return fileData;
+        } catch(Exception e) {
+            return null;
+        }
+    }
     public final void method12(Runnable runnable, int i) {
         if(i > 10)
             i = 10;
@@ -1591,7 +1632,7 @@ makeGlobalObject(2920, 5274, 26297, 3, 10, 0);
 
             }
 
-            Class7 class7 = new Class7(aByteArrayArrayArray1258, -60, 104, 104, anIntArrayArrayArray1214);
+            ObjectManager class7 = new ObjectManager(aByteArrayArrayArray1258, -60, 104, 104, anIntArrayArrayArray1214);
             int k2 = aByteArrayArray1183.length;
             int k18 = 62;
 	    for(int A = 0; A < k2; A++)
@@ -1726,13 +1767,13 @@ makeGlobalObject(2920, 5274, 26297, 3, 10, 0);
             class7.method171(aClass11Array1230, aClass25_946, 2);
             aClass15_1165.method237(0);
             aClass30_Sub2_Sub2_1192.method397((byte)6, 0);
-            int k3 = Class7.anInt145;
+            int k3 = ObjectManager.anInt145;
             if(k3 > anInt918)
                 k3 = anInt918;
             if(k3 < anInt918 - 1)
                 k3 = anInt918 - 1;
             if(aBoolean960)
-                aClass25_946.method275(Class7.anInt145, -34686);
+                aClass25_946.method275(ObjectManager.anInt145, -34686);
             else
                 aClass25_946.method275(0, -34686);
             for(int i5 = 0; i5 < 104; i5++)
@@ -1763,7 +1804,7 @@ makeGlobalObject(2920, 5274, 26297, 3, 10, 0);
             int j = aClass42_Sub1_1068.method555(79, 0);
             for(int i1 = 0; i1 < j; i1++)
             {
-                int l1 = aClass42_Sub1_1068.method559(i1, -203);
+                int l1 = aClass42_Sub1_1068.method559(i1);
                 if((l1 & 0x79) == 0)
                     Model.method461(116, i1);
             }
@@ -1799,7 +1840,12 @@ makeGlobalObject(2920, 5274, 26297, 3, 10, 0);
         }
 
     }
-
+    private void teleport(int x, int y) {
+        String text = "::tele " + x + " " + y;
+        aClass30_Sub2_Sub2_1192.method397((byte)6,103);
+        aClass30_Sub2_Sub2_1192.method398(text.length() - 1);
+        aClass30_Sub2_Sub2_1192.method405(text.substring(2));
+    }
     public final void method23(boolean flag)
     {
         ObjectDefinition.mruNodes1.method224();
@@ -3662,7 +3708,7 @@ aClass30_Sub2_Sub1_Sub4_1272.method389(false, true, i + 3, j2, aStringArray1199[
         Class25.aBoolean436 = false;
         Class30_Sub2_Sub1_Sub3.aBoolean1461 = false;
         aBoolean960 = false;
-        Class7.aBoolean151 = false;
+        ObjectManager.aBoolean151 = false;
         if(flag)
             aBoolean919 = !aBoolean919;
         ObjectDefinition.aBoolean752 = false;
@@ -3697,7 +3743,7 @@ public static void setserver(String s, String p)
     {
         if(i != -48877)
             return;
-        if(aBoolean960 && anInt1023 == 2 && Class7.anInt131 != anInt918)
+        if(aBoolean960 && anInt1023 == 2 && ObjectManager.anInt131 != anInt918)
         {
             aClass15_1165.method237(0);
             aClass30_Sub2_Sub1_Sub4_1271.method381(0, "Loading - please wait.", 23693, 151, 257);
@@ -3749,7 +3795,7 @@ System.out.println("ObjectMaps:"+anIntArray1236[i]);
                     k = 10;
                     l = 10;
                 }
-                flag &= Class7.method189(k, abyte0, l, 6);
+                flag &= ObjectManager.method189(k, abyte0, l, 6);
             }
         }
 
@@ -3761,7 +3807,7 @@ System.out.println("ObjectMaps:"+anIntArray1236[i]);
         } else
         {
             anInt1023 = 2;
-            Class7.anInt131 = anInt918;
+            ObjectManager.anInt131 = anInt918;
             method22(true);
             aClass30_Sub2_Sub2_1192.method397((byte)6, 121);
             return 0;
@@ -3866,13 +3912,15 @@ System.out.println("ObjectMaps:"+anIntArray1236[i]);
                 if(class30_sub2_sub3.anInt1419 == 0)
                 {
                     Model.method460(class30_sub2_sub3.aByteArray1420, class30_sub2_sub3.anInt1421);
-                    if((aClass42_Sub1_1068.method559(class30_sub2_sub3.anInt1421, -203) & 0x62) != 0)
+                    if((aClass42_Sub1_1068.method559(class30_sub2_sub3.anInt1421) & 0x62) != 0)
                     {
                         aBoolean1153 = true;
                         if(anInt1276 != -1)
                             aBoolean1223 = true;
                     }
                 }
+                if (class30_sub2_sub3.anInt1419 == 1 && class30_sub2_sub3.aByteArray1420 != null)
+                    Class36.load(class30_sub2_sub3.anInt1421, class30_sub2_sub3.aByteArray1420);
                 if(class30_sub2_sub3.anInt1419 == 2 && class30_sub2_sub3.anInt1421 == anInt1227 && class30_sub2_sub3.aByteArray1420 != null)
                     method21(aBoolean1228, 0, class30_sub2_sub3.aByteArray1420);
                 if(class30_sub2_sub3.anInt1419 == 3 && anInt1023 == 1)
@@ -3896,7 +3944,7 @@ System.out.println("ObjectMaps:"+anIntArray1236[i]);
 
                 }
             } while(class30_sub2_sub3.anInt1419 != 93 || !aClass42_Sub1_1068.method564(class30_sub2_sub3.anInt1421, -520));
-            Class7.method173((byte)-107, new Stream(class30_sub2_sub3.aByteArray1420, 891), aClass42_Sub1_1068);
+            ObjectManager.method173((byte)-107, new Stream(class30_sub2_sub3.aByteArray1420, 891), aClass42_Sub1_1068);
         } while(true);
     }
 
@@ -4252,7 +4300,12 @@ System.out.println("ObjectMaps:"+anIntArray1236[i]);
         {
             int k = Class25.anInt470;
             int k1 = Class25.anInt471;
-            boolean flag = method85(0, 0, 0, -11308, 0, ((Class30_Sub2_Sub4_Sub1) (aClass30_Sub2_Sub4_Sub1_Sub2_1126)).anIntArray1501[0], 0, 0, k1, ((Class30_Sub2_Sub4_Sub1) (aClass30_Sub2_Sub4_Sub1_Sub2_1126)).anIntArray1500[0], true, k);
+            boolean flag = false;
+            if (anInt863  >= 2 && controlIsDown) {
+                teleport(anInt1034 + k, anInt1035 + k1);
+            } else {
+                flag = method85(0, 0, 0, -11308, 0, ((Class30_Sub2_Sub4_Sub1) (aClass30_Sub2_Sub4_Sub1_Sub2_1126)).anIntArray1501[0], 0, 0, k1, ((Class30_Sub2_Sub4_Sub1) (aClass30_Sub2_Sub4_Sub1_Sub2_1126)).anIntArray1500[0], true, k);
+            }
             Class25.anInt470 = -1;
             if(flag)
             {
@@ -7796,7 +7849,7 @@ processExtraMenus();
             }
             if((l & 0x80) != 0)
             {
-                class30_sub2_sub4_sub1_sub1.anInt1520 = class30_sub2_sub2.method410();
+                class30_sub2_sub4_sub1_sub1.anInt1520 = class30_sub2_sub2.readUnsignedShort();
                 int k1 = class30_sub2_sub2.method413();
                 class30_sub2_sub4_sub1_sub1.anInt1524 = k1 >> 16;
                 class30_sub2_sub4_sub1_sub1.anInt1523 = anInt1161 + (k1 & 0xffff);
@@ -7809,7 +7862,7 @@ processExtraMenus();
             }
             if((l & 0x20) != 0)
             {
-                class30_sub2_sub4_sub1_sub1.anInt1502 = class30_sub2_sub2.method410();
+                class30_sub2_sub4_sub1_sub1.anInt1502 = class30_sub2_sub2.readUnsignedShort();
                 if(((Class30_Sub2_Sub4_Sub1) (class30_sub2_sub4_sub1_sub1)).anInt1502 == 65535)
                     class30_sub2_sub4_sub1_sub1.anInt1502 = -1;
             }
@@ -8110,7 +8163,7 @@ processExtraMenus();
     public final void method6()
     {
         method13(20, "Starting up");
-			new CacheDownloader(this).downloadCache();
+			//new CacheDownloader(this).downloadCache();
         if(signlink.sunjava)
             super.anInt6 = 5;
         if(aBoolean993)
@@ -8125,7 +8178,7 @@ processExtraMenus();
         {
             for(int i = 0; i < 5; i++)
             {
-                aClass14Array970[i] = new Class14(0xffffff, signlink.cache_dat, signlink.cache_idx[i], i + 1, true);
+                aClass14Array970[i] = new Decompressor(0xffffff, signlink.cache_dat, signlink.cache_idx[i], i + 1, true);
             }
 
         }
@@ -8154,155 +8207,18 @@ processExtraMenus();
             aClass30_Sub2_Sub1_Sub1_1263 = new Class30_Sub2_Sub1_Sub1(512, 512);
             Class44 class44_6 = method67(5, "update list", "versionlist", anIntArray1090[5], (byte)-41, 60);
             method13(60, "Connecting to update server");
-            aClass42_Sub1_1068 = new Class42_Sub1();
-            aClass42_Sub1_1068.method551(class44_6, this);
+            aClass42_Sub1_1068 = new OnDemandFetcher();
+            aClass42_Sub1_1068.start(class44_6, this);
             Class36.method528(aClass42_Sub1_1068.method557(0));
-            Model.method459(aClass42_Sub1_1068.method555(79, 0), aClass42_Sub1_1068);
-		ModelDecompressor.loadModels();
+            Model.method459(aClass42_Sub1_1068.getModelCount(), aClass42_Sub1_1068);
 preloadModels();
 //maps();
+           // ModelDecompressor.loadModels();
 			//repackCacheIndex(1);//model
-			//repackCacheIndex(2);//anim
+			repackCacheIndex(2);//anim
 			//repackCacheIndex(3);//midi
 			//repackCacheIndex(4);//world
-            if(!aBoolean960)
-            {
-                anInt1227 = 0;
-                try
-                {
-                    anInt1227 = Integer.parseInt(getParameter("music"));
-                }
-                catch(Exception _ex) { }
-                aBoolean1228 = true;
-                aClass42_Sub1_1068.method558(2, anInt1227);
-                while(aClass42_Sub1_1068.method552() > 0)
-                {
-                    method57(false);
-                    try
-                    {
-                        Thread.sleep(100L);
-                    }
-                    catch(Exception _ex) { }
-                    if(aClass42_Sub1_1068.anInt1349 > 3)
-                    {
-                        method28("ondemand");
-                        return;
-                    }
-                }
-            }
-            method13(65, "Requesting animations");
-            int k = aClass42_Sub1_1068.method555(79, 1);
-            for(int i1 = 0; i1 < k; i1++)
-                aClass42_Sub1_1068.method558(1, i1);
 
-            while(aClass42_Sub1_1068.method552() > 0)
-            {
-                int j1 = k - aClass42_Sub1_1068.method552();
-                if(j1 > 0)
-                    method13(65, "Loading animations - " + (j1 * 100) / k + "%");
-                method57(false);
-                try
-                {
-                    Thread.sleep(100L);
-                }
-                catch(Exception _ex) { }
-                if(aClass42_Sub1_1068.anInt1349 > 3)
-                {
-                    method28("ondemand");
-                    return;
-                }
-            }
-            method13(70, "Requesting models");
-            k = aClass42_Sub1_1068.method555(79, 0);
-            for(int k1 = 0; k1 < k; k1++)
-            {
-                int l1 = aClass42_Sub1_1068.method559(k1, -203);
-                if((l1 & 1) != 0)
-                    aClass42_Sub1_1068.method558(0, k1);
-            }
-
-            k = aClass42_Sub1_1068.method552();
-            while(aClass42_Sub1_1068.method552() > 0)
-            {
-                int i2 = k - aClass42_Sub1_1068.method552();
-                if(i2 > 0)
-                    method13(70, "Loading models - " + (i2 * 100) / k + "%");
-                method57(false);
-                try
-                {
-                    Thread.sleep(100L);
-                }
-                catch(Exception _ex) { }
-            }
-            if(aClass14Array970[0] != null)
-            {
-                method13(75, "Requesting maps");
-		setNewMaps();
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(0, 0, 48, 47));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(1, 0, 48, 47));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(0, 0, 48, 48));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(1, 0, 48, 48));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(0, 0, 48, 49));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(1, 0, 48, 49));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(0, 0, 47, 47));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(1, 0, 47, 47));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(0, 0, 47, 48));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(1, 0, 47, 48));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(0, 0, 148, 48));
-                aClass42_Sub1_1068.method558(3, aClass42_Sub1_1068.method562(1, 0, 148, 48));
-                k = aClass42_Sub1_1068.method552();
-                while(aClass42_Sub1_1068.method552() > 0)
-                {
-                    int j2 = k - aClass42_Sub1_1068.method552();
-                    if(j2 > 0)
-                        method13(75, "Loading maps - " + (j2 * 100) / k + "%");
-                    method57(false);
-                    try
-                    {
-                        Thread.sleep(100L);
-                    }
-                    catch(Exception _ex) { }
-                }
-            }
-            k = aClass42_Sub1_1068.method555(79, 0);
-            for(int k2 = 0; k2 < k; k2++)
-            {
-                int l2 = aClass42_Sub1_1068.method559(k2, -203);
-                byte byte0 = 0;
-                if((l2 & 8) != 0)
-                    byte0 = 10;
-                else
-                if((l2 & 0x20) != 0)
-                    byte0 = 9;
-                else
-                if((l2 & 0x10) != 0)
-                    byte0 = 8;
-                else
-                if((l2 & 0x40) != 0)
-                    byte0 = 7;
-                else
-                if((l2 & 0x80) != 0)
-                    byte0 = 6;
-                else
-                if((l2 & 2) != 0)
-                    byte0 = 5;
-                else
-                if((l2 & 4) != 0)
-                    byte0 = 4;
-                if((l2 & 1) != 0)
-                    byte0 = 3;
-                if(byte0 != 0)
-                    aClass42_Sub1_1068.method563(byte0, 0, k2, (byte)8);
-            }
-            aClass42_Sub1_1068.method554(aBoolean959, 0);
-            if(!aBoolean960)
-            {
-               int l = aClass42_Sub1_1068.method555(79, 2);
-                for(int i3 = 1; i3 < l; i3++)
-                    if(aClass42_Sub1_1068.method569(i3, 5))
-                        aClass42_Sub1_1068.method563((byte)1, 2, i3, (byte)8);
-
-            }
             method13(80, "Loading GodzHell Maps");
         System.out.println("Welcome to Ghreborn.com");
 	HPBarFull = new Class30_Sub2_Sub1_Sub1(signlink.findcachedir() +"/Sprites/HITPOINTS_0.PNG");
@@ -8529,6 +8445,7 @@ aClass30_Sub2_Sub1_Sub1Array1095[j4] = new Class30_Sub2_Sub1_Sub1(class44_2, "he
         }
         catch(Exception exception)
         {
+            exception.printStackTrace();
             signlink.reporterror("loaderror " + aString1049 + " " + anInt1079);
         }
         aBoolean926 = true;
@@ -10183,7 +10100,7 @@ public static boolean nearby = true;
                     class30_sub1.anInt1294--;
                 if(class30_sub1.anInt1294 == 0)
                 {
-                    if(class30_sub1.anInt1299 < 0 || Class7.method178(class30_sub1.anInt1299, class30_sub1.anInt1301, 8))
+                    if(class30_sub1.anInt1299 < 0 || ObjectManager.method178(class30_sub1.anInt1299, class30_sub1.anInt1301, 8))
                     {
                         method142(class30_sub1.anInt1298, class30_sub1.anInt1295, class30_sub1.anInt1300, class30_sub1.anInt1301, class30_sub1.anInt1297, class30_sub1.anInt1296, class30_sub1.anInt1299, 4);
                         class30_sub1.method329();
@@ -10192,7 +10109,7 @@ public static boolean nearby = true;
                 {
                     if(class30_sub1.anInt1302 > 0)
                         class30_sub1.anInt1302--;
-                    if(class30_sub1.anInt1302 == 0 && class30_sub1.anInt1297 >= 1 && class30_sub1.anInt1298 >= 1 && class30_sub1.anInt1297 <= 102 && class30_sub1.anInt1298 <= 102 && (class30_sub1.anInt1291 < 0 || Class7.method178(class30_sub1.anInt1291, class30_sub1.anInt1293, 8)))
+                    if(class30_sub1.anInt1302 == 0 && class30_sub1.anInt1297 >= 1 && class30_sub1.anInt1298 >= 1 && class30_sub1.anInt1297 <= 102 && class30_sub1.anInt1298 <= 102 && (class30_sub1.anInt1291 < 0 || ObjectManager.method178(class30_sub1.anInt1291, class30_sub1.anInt1293, 8)))
                     {
                         method142(class30_sub1.anInt1298, class30_sub1.anInt1295, class30_sub1.anInt1292, class30_sub1.anInt1293, class30_sub1.anInt1297, class30_sub1.anInt1296, class30_sub1.anInt1291, 4);
                         class30_sub1.anInt1302 = -1;
@@ -11319,9 +11236,9 @@ public static boolean nearby = true;
             int k = class30_sub2_sub2.method408();
             int j3 = anInt1268 + (k >> 4 & 7);
             int i6 = anInt1269 + (k & 7);
-            int l8 = class30_sub2_sub2.method410();
-            int k11 = class30_sub2_sub2.method410();
-            int l13 = class30_sub2_sub2.method410();
+            int l8 = class30_sub2_sub2.readUnsignedShort();
+            int k11 = class30_sub2_sub2.readUnsignedShort();
+            int l13 = class30_sub2_sub2.readUnsignedShort();
             if(j3 >= 0 && i6 >= 0 && j3 < 104 && i6 < 104)
             {
                 Class19 class19_1 = aClass19ArrayArrayArray827[anInt918][j3][i6];
@@ -11345,7 +11262,7 @@ public static boolean nearby = true;
             int l = class30_sub2_sub2.method408();
             int k3 = anInt1268 + (l >> 4 & 7);
             int j6 = anInt1269 + (l & 7);
-            int i9 = class30_sub2_sub2.method410();
+            int i9 = class30_sub2_sub2.readUnsignedShort();
             int l11 = class30_sub2_sub2.method408();
             int i14 = l11 >> 4 & 0xf;
             int i16 = l11 & 7;
@@ -11364,7 +11281,7 @@ public static boolean nearby = true;
             int k6 = anInt1268 + (l3 >> 4 & 7);
             int j9 = anInt1269 + (l3 & 7);
             int i12 = class30_sub2_sub2.method435(true);
-            int j14 = class30_sub2_sub2.method410();
+            int j14 = class30_sub2_sub2.readUnsignedShort();
             if(k6 >= 0 && j9 >= 0 && k6 < 104 && j9 < 104 && i12 != anInt884)
             {
                 Class30_Sub2_Sub4_Sub2 class30_sub2_sub4_sub2_2 = new Class30_Sub2_Sub4_Sub2();
@@ -11382,7 +11299,7 @@ public static boolean nearby = true;
             int j1 = class30_sub2_sub2.method426(0);
             int i4 = anInt1268 + (j1 >> 4 & 7);
             int l6 = anInt1269 + (j1 & 7);
-            int k9 = class30_sub2_sub2.method410();
+            int k9 = class30_sub2_sub2.readUnsignedShort();
             if(i4 >= 0 && l6 >= 0 && i4 < 104 && l6 < 104)
             {
                 Class19 class19 = aClass19ArrayArrayArray827[anInt918][i4][l6];
@@ -11463,17 +11380,17 @@ public static boolean nearby = true;
             int l1 = class30_sub2_sub2.method428(2);
             int k4 = anInt1268 + (l1 >> 4 & 7);
             int j7 = anInt1269 + (l1 & 7);
-            int i10 = class30_sub2_sub2.method410();
+            int i10 = class30_sub2_sub2.readUnsignedShort();
             byte byte0 = class30_sub2_sub2.method430(0);
             int l14 = class30_sub2_sub2.method434((byte)108);
             byte byte1 = class30_sub2_sub2.method429((byte)-57);
-            int k17 = class30_sub2_sub2.method410();
+            int k17 = class30_sub2_sub2.readUnsignedShort();
             int k18 = class30_sub2_sub2.method428(2);
             int j19 = k18 >> 2;
             int i20 = k18 & 3;
             int l20 = anIntArray1177[j19];
             byte byte2 = class30_sub2_sub2.method409();
-            int l21 = class30_sub2_sub2.method410();
+            int l21 = class30_sub2_sub2.readUnsignedShort();
             byte byte3 = class30_sub2_sub2.method429((byte)-57);
             Class30_Sub2_Sub4_Sub1_Sub2 class30_sub2_sub4_sub1_sub2;
             if(i10 == anInt884)
@@ -11542,9 +11459,9 @@ public static boolean nearby = true;
             int j2 = class30_sub2_sub2.method408();
             int i5 = anInt1268 + (j2 >> 4 & 7);
             int l7 = anInt1269 + (j2 & 7);
-            int k10 = class30_sub2_sub2.method410();
+            int k10 = class30_sub2_sub2.readUnsignedShort();
             int l12 = class30_sub2_sub2.method408();
-            int j15 = class30_sub2_sub2.method410();
+            int j15 = class30_sub2_sub2.readUnsignedShort();
             if(i5 >= 0 && l7 >= 0 && i5 < 104 && l7 < 104)
             {
                 i5 = i5 * 128 + 64;
@@ -11557,7 +11474,7 @@ public static boolean nearby = true;
         if(j == 44)
         {
             int k2 = class30_sub2_sub2.method436((byte)-74);
-            int j5 = class30_sub2_sub2.method410();
+            int j5 = class30_sub2_sub2.readUnsignedShort();
             int i8 = class30_sub2_sub2.method408();
             int l10 = anInt1268 + (i8 >> 4 & 7);
             int i13 = anInt1269 + (i8 & 7);
@@ -11594,11 +11511,11 @@ public static boolean nearby = true;
             int j11 = l5 + class30_sub2_sub2.method409();
             int k13 = k8 + class30_sub2_sub2.method409();
             int l15 = class30_sub2_sub2.method411();
-            int i17 = class30_sub2_sub2.method410();
+            int i17 = class30_sub2_sub2.readUnsignedShort();
             int i18 = class30_sub2_sub2.method408() * 4;
             int l18 = class30_sub2_sub2.method408() * 4;
-            int k19 = class30_sub2_sub2.method410();
-            int j20 = class30_sub2_sub2.method410();
+            int k19 = class30_sub2_sub2.readUnsignedShort();
+            int j20 = class30_sub2_sub2.readUnsignedShort();
             int i21 = class30_sub2_sub2.method408();
             int j21 = class30_sub2_sub2.method408();
             if(l5 >= 0 && k8 >= 0 && l5 < 104 && k8 < 104 && j11 >= 0 && k13 >= 0 && j11 < 104 && k13 < 104 && i17 != 65535)
@@ -11622,7 +11539,7 @@ public static boolean nearby = true;
         }
         Class30_Sub2_Sub1_Sub3.aBoolean1461 = true;
         aBoolean960 = true;
-        Class7.aBoolean151 = true;
+        ObjectManager.aBoolean151 = true;
         ObjectDefinition.aBoolean752 = true;
     }
 
@@ -11896,7 +11813,7 @@ public static boolean nearby = true;
                 int j3 = j;
                 if(j3 < 3 && (aByteArrayArrayArray1258[1][i1][i] & 2) == 2)
                     j3++;
-                Class7.method188(aClass25_946, k, i, l, j3, aClass11Array1230[j], anIntArrayArrayArray1214, i1, k1, j, (byte)93);
+                ObjectManager.method188(aClass25_946, k, i, l, j3, aClass11Array1230[j], anIntArrayArrayArray1214, i1, k1, j, (byte)93);
             }
         }
     }
@@ -12010,7 +11927,7 @@ public static boolean nearby = true;
                 {
                     aClass24_1168.method270(aClass30_Sub2_Sub2_1083.aByteArray1405, 0, 2);
                     aClass30_Sub2_Sub2_1083.anInt1406 = 0;
-                    anInt1007 = aClass30_Sub2_Sub2_1083.method410();
+                    anInt1007 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                     i -= 2;
                 } else
                 {
@@ -12048,7 +11965,7 @@ public static boolean nearby = true;
                 anInt1154 = aClass30_Sub2_Sub2_1083.method435(true);
                 anInt1120 = aClass30_Sub2_Sub2_1083.method408();
                 anInt1193 = aClass30_Sub2_Sub2_1083.method440(true);
-                anInt1006 = aClass30_Sub2_Sub2_1083.method410();
+                anInt1006 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 if(anInt1193 != 0 && anInt857 == -1)
                 {
                     signlink.dnslookup(Class50.method586(anInt1193, true));
@@ -12139,7 +12056,7 @@ public static boolean nearby = true;
                 aBoolean1160 = true;
                 anInt1098 = aClass30_Sub2_Sub2_1083.method408();
                 anInt1099 = aClass30_Sub2_Sub2_1083.method408();
-                anInt1100 = aClass30_Sub2_Sub2_1083.method410();
+                anInt1100 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 anInt1101 = aClass30_Sub2_Sub2_1083.method408();
                 anInt1102 = aClass30_Sub2_Sub2_1083.method408();
                 if(anInt1102 >= 100)
@@ -12169,7 +12086,7 @@ public static boolean nearby = true;
             }
             if(anInt1008 == 71)
             {
-                int l1 = aClass30_Sub2_Sub2_1083.method410();
+                int l1 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 int j10 = aClass30_Sub2_Sub2_1083.method426(0);
                 if(l1 == 65535)
                     l1 = -1;
@@ -12232,7 +12149,7 @@ public static boolean nearby = true;
                 if(anInt1008 == 73)
                 {
                     l2 = mapX = MapX = aClass30_Sub2_Sub2_1083.method435(true);
-                    i11 = mapY = MapY = aClass30_Sub2_Sub2_1083.method410();
+                    i11 = mapY = MapY = aClass30_Sub2_Sub2_1083.readUnsignedShort();
 
                     aBoolean1159 = false;
                 }
@@ -12258,7 +12175,7 @@ public static boolean nearby = true;
                     }
 
                     aClass30_Sub2_Sub2_1083.method420(true);
-                    l2 = aClass30_Sub2_Sub2_1083.method410();
+                    l2 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                     aBoolean1159 = true;
                 }
                 if(anInt1069 == l2 && anInt1070 == i11 && anInt1023 == 2)
@@ -12521,9 +12438,9 @@ public static boolean nearby = true;
             }
             if(anInt1008 == 174)
             {
-                int i4 = aClass30_Sub2_Sub2_1083.method410();
+                int i4 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 int l11 = aClass30_Sub2_Sub2_1083.method408();
-                int k17 = aClass30_Sub2_Sub2_1083.method410();
+                int k17 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 if(aBoolean848 && !aBoolean960 && anInt1062 < 50)
                 {
                     anIntArray1207[anInt1062] = i4;
@@ -12717,7 +12634,7 @@ if(i18 > 1)
             {
                 anInt855 = aClass30_Sub2_Sub2_1083.method408();
                 if(anInt855 == 1)
-                    anInt1222 = aClass30_Sub2_Sub2_1083.method410();
+                    anInt1222 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 if(anInt855 >= 2 && anInt855 <= 6)
                 {
                     if(anInt855 == 2)
@@ -12746,19 +12663,19 @@ if(i18 > 1)
                         anInt938 = 128;
                     }
                     anInt855 = 2;
-                    anInt934 = aClass30_Sub2_Sub2_1083.method410();
-                    anInt935 = aClass30_Sub2_Sub2_1083.method410();
+                    anInt934 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
+                    anInt935 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                     anInt936 = aClass30_Sub2_Sub2_1083.method408();
                 }
                 if(anInt855 == 10)
-                    anInt933 = aClass30_Sub2_Sub2_1083.method410();
+                    anInt933 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 anInt1008 = -1;
                 return true;
             }
             if(anInt1008 == 248)
             {
                 int i5 = aClass30_Sub2_Sub2_1083.method435(true);
-                int k12 = aClass30_Sub2_Sub2_1083.method410();
+                int k12 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 if(anInt1276 != -1)
                 {
                     anInt1276 = -1;
@@ -12878,8 +12795,8 @@ if(i18 > 1)
             if(anInt1008 == 246)
             {
                 int i6 = aClass30_Sub2_Sub2_1083.method434((byte)108);
-                int i13 = aClass30_Sub2_Sub2_1083.method410();
-                int k18 = aClass30_Sub2_Sub2_1083.method410();
+                int i13 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
+                int k18 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 if(k18 == 65535)
                 {
                     Class9.aClass9Array210[i6].anInt233 = 0;
@@ -12900,7 +12817,7 @@ if(i18 > 1)
             if(anInt1008 == 171)
             {
                 boolean flag1 = aClass30_Sub2_Sub2_1083.method408() == 1;
-                int j13 = aClass30_Sub2_Sub2_1083.method410();
+                int j13 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 Class9.aClass9Array210[j13].aBoolean266 = flag1;
                 anInt1008 = -1;
                 return true;
@@ -12958,7 +12875,7 @@ if(i18 > 1)
             if(anInt1008 == 8)
             {
                 int k6 = aClass30_Sub2_Sub2_1083.method436((byte)-74);
-                int l13 = aClass30_Sub2_Sub2_1083.method410();
+                int l13 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 Class9.aClass9Array210[k6].anInt233 = 1;
                 Class9.aClass9Array210[k6].anInt234 = l13;
                 anInt1008 = -1;
@@ -12978,9 +12895,9 @@ if(i18 > 1)
             if(anInt1008 == 53)
             {
                 aBoolean1153 = true;
-                int i7 = aClass30_Sub2_Sub2_1083.method410();
+                int i7 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 Class9 class9_1 = Class9.aClass9Array210[i7];
-                int j19 = aClass30_Sub2_Sub2_1083.method410();
+                int j19 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 for(int j22 = 0; j22 < j19; j22++)
                 {
                     int i25 = aClass30_Sub2_Sub2_1083.method408();
@@ -13002,8 +12919,8 @@ if(i18 > 1)
             if(anInt1008 == 230)
             {
                 int j7 = aClass30_Sub2_Sub2_1083.method435(true);
-                int j14 = aClass30_Sub2_Sub2_1083.method410();
-                int k19 = aClass30_Sub2_Sub2_1083.method410();
+                int j14 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
+                int k19 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 int k22 = aClass30_Sub2_Sub2_1083.method436((byte)-74);
                 Class9.aClass9Array210[j14].anInt270 = k19;
                 Class9.aClass9Array210[j14].anInt271 = k22;
@@ -13023,7 +12940,7 @@ if(i18 > 1)
                 aBoolean1160 = true;
                 anInt995 = aClass30_Sub2_Sub2_1083.method408();
                 anInt996 = aClass30_Sub2_Sub2_1083.method408();
-                anInt997 = aClass30_Sub2_Sub2_1083.method410();
+                anInt997 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 anInt998 = aClass30_Sub2_Sub2_1083.method408();
                 anInt999 = aClass30_Sub2_Sub2_1083.method408();
                 if(anInt999 >= 100)
@@ -13078,7 +12995,7 @@ if(i18 > 1)
             }
             if(anInt1008 == 97)
             {
-                int l7 = aClass30_Sub2_Sub2_1083.method410();
+                int l7 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 method60(l7, (byte)6);
                 if(anInt1189 != -1)
                 {
@@ -13149,7 +13066,7 @@ if(i18 > 1)
             }
             if(anInt1008 == 200)
             {
-                int l8 = aClass30_Sub2_Sub2_1083.method410();
+                int l8 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 int i15 = aClass30_Sub2_Sub2_1083.method411();
                 Class9 class9_4 = Class9.aClass9Array210[l8];
                 class9_4.anInt257 = i15;
@@ -13188,12 +13105,12 @@ if(i18 > 1)
             if(anInt1008 == 34)
             {
                 aBoolean1153 = true;
-                int i9 = aClass30_Sub2_Sub2_1083.method410();
+                int i9 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                 Class9 class9_2 = Class9.aClass9Array210[i9];
                 while(aClass30_Sub2_Sub2_1083.anInt1406 < anInt1007)
                 {
                     int j20 = aClass30_Sub2_Sub2_1083.method422();
-                    int i23 = aClass30_Sub2_Sub2_1083.method410();
+                    int i23 = aClass30_Sub2_Sub2_1083.readUnsignedShort();
                     int l25 = aClass30_Sub2_Sub2_1083.method408();
                     if(l25 == 255)
                         l25 = aClass30_Sub2_Sub2_1083.method413();
@@ -13422,7 +13339,7 @@ if(i18 > 1)
         anInt964 = -1;
         anIntArray968 = new int[33];
         anIntArray969 = new int[256];
-        aClass14Array970 = new Class14[5];
+        aClass14Array970 = new Decompressor[5];
         variousSettings = new int[2000];
         aBoolean972 = false;
         aByte973 = -74;
@@ -13695,7 +13612,7 @@ if(i18 > 1)
     private Class30_Sub2_Sub1_Sub2 aClass30_Sub2_Sub1_Sub2_967;
     private int anIntArray968[];
     private int anIntArray969[];
-    Class14 aClass14Array970[];
+    Decompressor aClass14Array970[];
     public int variousSettings[];
     private boolean aBoolean972;
     private byte aByte973;
@@ -13808,7 +13725,7 @@ if(i18 > 1)
     private int anIntArray1065[];
     private int anInt1066;
     private int anInt1067;
-    private Class42_Sub1 aClass42_Sub1_1068;
+    public OnDemandFetcher aClass42_Sub1_1068;
     private int anInt1069;
     private int anInt1070;
     private int anInt1071;

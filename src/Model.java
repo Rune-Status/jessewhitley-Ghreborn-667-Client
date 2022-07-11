@@ -32,8 +32,8 @@ public class Model extends Class30_Sub2_Sub4 {
 		Stream nc6 = new Stream(abyte0);
 		Stream nc7 = new Stream(abyte0);
 		nc1.anInt1406 = abyte0.length - 23;
-		int numVertices = nc1.method410();
-		int numTriangles = nc1.method410();
+		int numVertices = nc1.readUnsignedShort();
+		int numTriangles = nc1.readUnsignedShort();
 		int numTexTriangles = nc1.method408();
 		Class21 ModelDef_1 = aClass21Array1661[modelID] = new Class21();
 		ModelDef_1.aByteArray368 = abyte0;
@@ -48,11 +48,11 @@ public class Model extends Class30_Sub2_Sub4 {
 		int k2 = nc1.method408();
 		int l2 = nc1.method408();
 		int i3 = nc1.method408();
-		int j3 = nc1.method410();
-		int k3 = nc1.method410();
-		int l3 = nc1.method410();
-		int i4 = nc1.method410();
-		int j4 = nc1.method410();
+		int j3 = nc1.readUnsignedShort();
+		int k3 = nc1.readUnsignedShort();
+		int l3 = nc1.readUnsignedShort();
+		int i4 = nc1.readUnsignedShort();
+		int j4 = nc1.readUnsignedShort();
 		int k4 = 0;
 		int l4 = 0;
 		int i5 = 0;
@@ -221,7 +221,7 @@ public class Model extends Class30_Sub2_Sub4 {
 		nc6.anInt1406 = l7;
 		nc7.anInt1406 = i8;
 		for (int i12 = 0; i12 < numTriangles; i12++) {
-			triangleColours2[i12] = nc1.method410();
+			triangleColours2[i12] = nc1.readUnsignedShort();
 			if (l1 == 1) {
 				anIntArray1637[i12] = nc2.method409();
 				if (anIntArray1637[i12] == 2)
@@ -239,7 +239,7 @@ public class Model extends Class30_Sub2_Sub4 {
 			if (k2 == 1)
 				anIntArray1656[i12] = nc5.method408();
 			if (l2 == 1)
-				D[i12] = (short) (nc6.method410() - 1);
+				D[i12] = (short) (nc6.readUnsignedShort() - 1);
 			if (x != null)
 				if (D[i12] != -1)
 					x[i12] = (byte) (nc7.method408() - 1);
@@ -301,28 +301,28 @@ public class Model extends Class30_Sub2_Sub4 {
 		for (int k14 = 0; k14 < numTexTriangles; k14++) {
 			int i15 = O[k14] & 0xff;
 			if (i15 == 0) {
-				texTrianglesPoint1[k14] = nc1.method410();
-				texTrianglesPoint2[k14] = nc1.method410();
-				texTrianglesPoint3[k14] = nc1.method410();
+				texTrianglesPoint1[k14] = nc1.readUnsignedShort();
+				texTrianglesPoint2[k14] = nc1.readUnsignedShort();
+				texTrianglesPoint3[k14] = nc1.readUnsignedShort();
 			}
 			if (i15 == 1) {
-				texTrianglesPoint1[k14] = nc2.method410();
-				texTrianglesPoint2[k14] = nc2.method410();
-				texTrianglesPoint3[k14] = nc2.method410();
-				kb[k14] = nc3.method410();
-				N[k14] = nc3.method410();
-				y[k14] = nc3.method410();
+				texTrianglesPoint1[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint2[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint3[k14] = nc2.readUnsignedShort();
+				kb[k14] = nc3.readUnsignedShort();
+				N[k14] = nc3.readUnsignedShort();
+				y[k14] = nc3.readUnsignedShort();
 				gb[k14] = nc4.method409();
 				lb[k14] = nc5.method409();
 				F[k14] = nc6.method409();
 			}
 			if (i15 == 2) {
-				texTrianglesPoint1[k14] = nc2.method410();
-				texTrianglesPoint2[k14] = nc2.method410();
-				texTrianglesPoint3[k14] = nc2.method410();
-				kb[k14] = nc3.method410();
-				N[k14] = nc3.method410();
-				y[k14] = nc3.method410();
+				texTrianglesPoint1[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint2[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint3[k14] = nc2.readUnsignedShort();
+				kb[k14] = nc3.readUnsignedShort();
+				N[k14] = nc3.readUnsignedShort();
+				y[k14] = nc3.readUnsignedShort();
 				gb[k14] = nc4.method409();
 				lb[k14] = nc5.method409();
 				F[k14] = nc6.method409();
@@ -330,12 +330,12 @@ public class Model extends Class30_Sub2_Sub4 {
 				J[k14] = nc6.method409();
 			}
 			if (i15 == 3) {
-				texTrianglesPoint1[k14] = nc2.method410();
-				texTrianglesPoint2[k14] = nc2.method410();
-				texTrianglesPoint3[k14] = nc2.method410();
-				kb[k14] = nc3.method410();
-				N[k14] = nc3.method410();
-				y[k14] = nc3.method410();
+				texTrianglesPoint1[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint2[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint3[k14] = nc2.readUnsignedShort();
+				kb[k14] = nc3.readUnsignedShort();
+				N[k14] = nc3.readUnsignedShort();
+				y[k14] = nc3.readUnsignedShort();
 				gb[k14] = nc4.method409();
 				lb[k14] = nc5.method409();
 				F[k14] = nc6.method409();
@@ -387,8 +387,8 @@ public class Model extends Class30_Sub2_Sub4 {
 		Stream nc6 = new Stream(abyte0);
 		Stream nc7 = new Stream(abyte0);
 		nc1.anInt1406 = abyte0.length - 23;
-		int numVertices = nc1.method410();
-		int numTriangles = nc1.method410();
+		int numVertices = nc1.readUnsignedShort();
+		int numTriangles = nc1.readUnsignedShort();
 		int numTexTriangles = nc1.method408();
 		Class21 ModelDef_1 = aClass21Array1661[modelID] = new Class21();
 		ModelDef_1.aByteArray368 = abyte0;
@@ -417,11 +417,11 @@ public class Model extends Class30_Sub2_Sub4 {
 		int k2 = nc1.method408();
 		int l2 = nc1.method408();
 		int i3 = nc1.method408();
-		int j3 = nc1.method410();
-		int k3 = nc1.method410();
-		int l3 = nc1.method410();
-		int i4 = nc1.method410();
-		int j4 = nc1.method410();
+		int j3 = nc1.readUnsignedShort();
+		int k3 = nc1.readUnsignedShort();
+		int l3 = nc1.readUnsignedShort();
+		int i4 = nc1.readUnsignedShort();
+		int j4 = nc1.readUnsignedShort();
 		int k4 = 0;
 		int l4 = 0;
 		int i5 = 0;
@@ -598,7 +598,7 @@ public class Model extends Class30_Sub2_Sub4 {
 		nc6.anInt1406 = l7;
 		nc7.anInt1406 = i8;
 		for (int i12 = 0; i12 < numTriangles; i12++) {
-			triangleColours2[i12] = nc1.method410();
+			triangleColours2[i12] = nc1.readUnsignedShort();
 			if (l1 == 1) {
 				anIntArray1637[i12] = nc2.method409();
 				if (anIntArray1637[i12] == 2)
@@ -616,7 +616,7 @@ public class Model extends Class30_Sub2_Sub4 {
 			if (k2 == 1)
 				anIntArray1656[i12] = nc5.method408();
 			if (l2 == 1)
-				D[i12] = (short) (nc6.method410() - 1);
+				D[i12] = (short) (nc6.readUnsignedShort() - 1);
 			if (x != null)
 				if (D[i12] != -1)
 					x[i12] = (byte) (nc7.method408() - 1);
@@ -678,21 +678,21 @@ public class Model extends Class30_Sub2_Sub4 {
 		for (int k14 = 0; k14 < numTexTriangles; k14++) {
 			int i15 = O[k14] & 0xff;
 			if (i15 == 0) {
-				texTrianglesPoint1[k14] = nc1.method410();
-				texTrianglesPoint2[k14] = nc1.method410();
-				texTrianglesPoint3[k14] = nc1.method410();
+				texTrianglesPoint1[k14] = nc1.readUnsignedShort();
+				texTrianglesPoint2[k14] = nc1.readUnsignedShort();
+				texTrianglesPoint3[k14] = nc1.readUnsignedShort();
 			}
 			if (i15 == 1) {
-				texTrianglesPoint1[k14] = nc2.method410();
-				texTrianglesPoint2[k14] = nc2.method410();
-				texTrianglesPoint3[k14] = nc2.method410();
+				texTrianglesPoint1[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint2[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint3[k14] = nc2.readUnsignedShort();
 				if (newformat < 15) {
-					kb[k14] = nc3.method410();
+					kb[k14] = nc3.readUnsignedShort();
 					if (newformat >= 14)
 						N[k14] = nc3.v(-1);
 					else
-						N[k14] = nc3.method410();
-					y[k14] = nc3.method410();
+						N[k14] = nc3.readUnsignedShort();
+					y[k14] = nc3.readUnsignedShort();
 				} else {
 					kb[k14] = nc3.v(-1);
 					N[k14] = nc3.v(-1);
@@ -703,20 +703,20 @@ public class Model extends Class30_Sub2_Sub4 {
 				F[k14] = nc6.method409();
 			}
 			if (i15 == 2) {
-				texTrianglesPoint1[k14] = nc2.method410();
-				texTrianglesPoint2[k14] = nc2.method410();
-				texTrianglesPoint3[k14] = nc2.method410();
+				texTrianglesPoint1[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint2[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint3[k14] = nc2.readUnsignedShort();
 				if (newformat >= 15) {
 					kb[k14] = nc3.v(-1);
 					N[k14] = nc3.v(-1);
 					y[k14] = nc3.v(-1);
 				} else {
-					kb[k14] = nc3.method410();
+					kb[k14] = nc3.readUnsignedShort();
 					if (newformat < 14)
-						N[k14] = nc3.method410();
+						N[k14] = nc3.readUnsignedShort();
 					else
 						N[k14] = nc3.v(-1);
-					y[k14] = nc3.method410();
+					y[k14] = nc3.readUnsignedShort();
 				}
 				gb[k14] = nc4.method409();
 				lb[k14] = nc5.method409();
@@ -725,16 +725,16 @@ public class Model extends Class30_Sub2_Sub4 {
 				J[k14] = nc6.method409();
 			}
 			if (i15 == 3) {
-				texTrianglesPoint1[k14] = nc2.method410();
-				texTrianglesPoint2[k14] = nc2.method410();
-				texTrianglesPoint3[k14] = nc2.method410();
+				texTrianglesPoint1[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint2[k14] = nc2.readUnsignedShort();
+				texTrianglesPoint3[k14] = nc2.readUnsignedShort();
 				if (newformat < 15) {
-					kb[k14] = nc3.method410();
+					kb[k14] = nc3.readUnsignedShort();
 					if (newformat < 14)
-						N[k14] = nc3.method410();
+						N[k14] = nc3.readUnsignedShort();
 					else
 						N[k14] = nc3.v(-1);
-					y[k14] = nc3.method410();
+					y[k14] = nc3.readUnsignedShort();
 				} else {
 					kb[k14] = nc3.v(-1);
 					N[k14] = nc3.v(-1);
@@ -837,7 +837,7 @@ public class Model extends Class30_Sub2_Sub4 {
 		stream_3.anInt1406 = class21.anInt382;
 		stream_4.anInt1406 = class21.anInt383;
 		for (int l1 = 0; l1 < anInt1630; l1++) {
-			anIntArray1640[l1] = stream.method410();
+			anIntArray1640[l1] = stream.readUnsignedShort();
 			if (anIntArray1637 != null)
 				anIntArray1637[l1] = stream_1.method408();
 			if (anIntArray1638 != null)
@@ -898,9 +898,9 @@ public class Model extends Class30_Sub2_Sub4 {
 		}
 		stream.anInt1406 = class21.anInt384;
 		for (int j4 = 0; j4 < anInt1642; j4++) {
-			anIntArray1643[j4] = stream.method410();
-			anIntArray1644[j4] = stream.method410();
-			anIntArray1645[j4] = stream.method410();
+			anIntArray1643[j4] = stream.readUnsignedShort();
+			anIntArray1644[j4] = stream.readUnsignedShort();
+			anIntArray1645[j4] = stream.readUnsignedShort();
 		}
 	}
 
@@ -916,18 +916,18 @@ public class Model extends Class30_Sub2_Sub4 {
 		stream.anInt1406 = abyte0.length - 18;
 		Class21 class21_1 = aClass21Array1661[j] = new Class21();
 		class21_1.aByteArray368 = abyte0;
-		class21_1.anInt369 = stream.method410();
-		class21_1.anInt370 = stream.method410();
+		class21_1.anInt369 = stream.readUnsignedShort();
+		class21_1.anInt370 = stream.readUnsignedShort();
 		class21_1.anInt371 = stream.method408();
 		int k = stream.method408();
 		int l = stream.method408();
 		int i1 = stream.method408();
 		int j1 = stream.method408();
 		int k1 = stream.method408();
-		int l1 = stream.method410();
-		int i2 = stream.method410();
-		int j2 = stream.method410();
-		int k2 = stream.method410();
+		int l1 = stream.readUnsignedShort();
+		int i2 = stream.readUnsignedShort();
+		int j2 = stream.readUnsignedShort();
+		int k2 = stream.readUnsignedShort();
 		int l2 = 0;
 		class21_1.anInt372 = l2;
 		l2 += class21_1.anInt369;
@@ -975,7 +975,7 @@ public class Model extends Class30_Sub2_Sub4 {
 	public static boolean newmodel[];
 
 	public static void method459(int i,
-			Class42 onDemandFetcherParent) {
+			OnDemandFetcherParent onDemandFetcherParent) {
 		aClass21Array1661 = new Class21[100000];
 		newmodel = new boolean[100000];
 		aOnDemandFetcherParent_1662 = onDemandFetcherParent;
@@ -1602,7 +1602,7 @@ public class Model extends Class30_Sub2_Sub4 {
 			return;
 		if (i == -1)
 			return;
-		Class36 class36 = Class36.method531(anInt1614, i);
+		Class36 class36 = Class36.method531(i);
 		if (class36 == null)
 			return;
 		Class18 class18 = class36.aClass18_637;
@@ -1625,10 +1625,10 @@ public class Model extends Class30_Sub2_Sub4 {
 			method470(k, 40542);
 			return;
 		}
-		Class36 class36 = Class36.method531(anInt1614, k);
+		Class36 class36 = Class36.method531(k);
 		if (class36 == null)
 			return;
-		Class36 class36_1 = Class36.method531(anInt1614, k);
+		Class36 class36_1 = Class36.method531( k);
 		if (class36_1 == null) {
 			method470(k, 40542);
 			return;
@@ -2721,7 +2721,7 @@ public final void method479(int i, int j, int k, int l, int i1, boolean flag) {
 	public boolean aBoolean1659;
 	Class33 aClass33Array1660[];
 	static Class21 aClass21Array1661[];
-	static Class42 aOnDemandFetcherParent_1662;
+	static OnDemandFetcherParent aOnDemandFetcherParent_1662;
 	static boolean aBooleanArray1663[] = new boolean[8000];
 	static boolean aBooleanArray1664[] = new boolean[8000];
 	static int anIntArray1665[] = new int[8000];

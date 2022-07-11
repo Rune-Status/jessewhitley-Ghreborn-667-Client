@@ -311,16 +311,6 @@ public class Applet_Sub1 extends Applet
         idleTime = 0;
         int i = keyevent.getKeyCode();
         int j = keyevent.getKeyChar();
-        if(i == KeyEvent.VK_F12){
-        	if(client.cameratoggle == 0){
-        		System.out.println("Camera Movement On");
-            client.cameratoggle = 1;
-          }else
-          if(client.cameratoggle == 1){
-        		System.out.println("Camera Movement Off");
-            client.cameratoggle = 0;
-          }
-        }
         if(i == KeyEvent.VK_INSERT)
           client.zoom += 15;
         if(i == KeyEvent.VK_PAGE_UP)
@@ -333,6 +323,9 @@ public class Applet_Sub1 extends Applet
           client.lftrit -= 15;
         if(i == KeyEvent.VK_DELETE)
           client.lftrit += 15;
+        if (keyevent.isControlDown()) {
+            client.controlIsDown = true;
+        }
         if(j < 30)
             j = 0;
         if(i == 37)
@@ -397,6 +390,9 @@ public class Applet_Sub1 extends Applet
             c = '\t';
         if(i == 10)
             c = '\n';
+        if (i == KeyEvent.VK_CONTROL) {
+            client.controlIsDown = false;
+        }
         if(c > 0 && c < '\200')
             anIntArray30[c] = 0;
     }

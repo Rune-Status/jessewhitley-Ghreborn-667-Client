@@ -6,7 +6,7 @@ public class VarBit
         if(i != 0)
             anInt644 = 91;
         Stream class30_sub2_sub2 = new Stream(class44.method571("varbit.dat", null), 891);
-        anInt645 = class30_sub2_sub2.method410();
+        anInt645 = class30_sub2_sub2.readUnsignedShort();
         if(aClass37Array646 == null)
             aClass37Array646 = new VarBit[anInt645];
         for(int j = 0; j < anInt645; j++)
@@ -25,7 +25,7 @@ public class VarBit
 	public void method534(Stream class30_sub2_sub2)
 	{
 
-				anInt648 = class30_sub2_sub2.method410();
+				anInt648 = class30_sub2_sub2.readUnsignedShort();
 				anInt649 = class30_sub2_sub2.method408();
 				anInt650 = class30_sub2_sub2.method408();
 	}

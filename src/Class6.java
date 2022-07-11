@@ -263,8 +263,8 @@ public class Class6
 
         anInt109 = class30_sub2_sub2.method422();
         anInt110 = class30_sub2_sub2.method422();
-        anInt113 = class30_sub2_sub2.method410();
-        anInt114 = class30_sub2_sub2.method410();
+        anInt113 = class30_sub2_sub2.readUnsignedShort();
+        anInt114 = class30_sub2_sub2.readUnsignedShort();
         aClass39_111 = new Class39();
         aClass29_112 = new Class29();
         aClass39_111.method545(class30_sub2_sub2, false, aClass29_112);

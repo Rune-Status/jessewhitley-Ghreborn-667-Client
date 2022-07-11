@@ -102,7 +102,7 @@ final class Class30_Sub2_Sub4_Sub1_Sub2 extends Class30_Sub2_Sub4_Sub1
             anIntArray1717[j] = (k << 8) + i1;
             if(j == 0 && anIntArray1717[0] == 65535)
             {
-                aClass5_1698 = Class5.method159(class30_sub2_sub2.method410());
+                aClass5_1698 = Class5.method159(class30_sub2_sub2.readUnsignedShort());
                 break;
             }
             if(anIntArray1717[j] >= 512 && anIntArray1717[j] - 512 < Class8.anInt203)
@@ -121,30 +121,30 @@ final class Class30_Sub2_Sub4_Sub1_Sub2 extends Class30_Sub2_Sub4_Sub1
             anIntArray1700[l] = j1;
         }
 
-        super.anInt1511 = class30_sub2_sub2.method410();
+        super.anInt1511 = class30_sub2_sub2.readUnsignedShort();
         if(super.anInt1511 == 65535)
             super.anInt1511 = -1;
-        super.anInt1512 = class30_sub2_sub2.method410();
+        super.anInt1512 = class30_sub2_sub2.readUnsignedShort();
         if(super.anInt1512 == 65535)
             super.anInt1512 = -1;
-        super.anInt1554 = class30_sub2_sub2.method410();
+        super.anInt1554 = class30_sub2_sub2.readUnsignedShort();
         if(super.anInt1554 == 65535)
             super.anInt1554 = -1;
-        super.anInt1555 = class30_sub2_sub2.method410();
+        super.anInt1555 = class30_sub2_sub2.readUnsignedShort();
         if(super.anInt1555 == 65535)
             super.anInt1555 = -1;
-        super.anInt1556 = class30_sub2_sub2.method410();
+        super.anInt1556 = class30_sub2_sub2.readUnsignedShort();
         if(super.anInt1556 == 65535)
             super.anInt1556 = -1;
-        super.anInt1557 = class30_sub2_sub2.method410();
+        super.anInt1557 = class30_sub2_sub2.readUnsignedShort();
         if(super.anInt1557 == 65535)
             super.anInt1557 = -1;
-        super.anInt1505 = class30_sub2_sub2.method410();
+        super.anInt1505 = class30_sub2_sub2.readUnsignedShort();
         if(super.anInt1505 == 65535)
             super.anInt1505 = -1;
         aString1703 = Class50.method587(-45804, Class50.method584(class30_sub2_sub2.method414(-35089), (byte)-99));
         anInt1705 = class30_sub2_sub2.method408();
-        anInt1723 = class30_sub2_sub2.method410();
+        anInt1723 = class30_sub2_sub2.readUnsignedShort();
         aBoolean1710 = true;
         aLong1718 = 0L;
         for(int k1 = 0; k1 < 12; k1++)

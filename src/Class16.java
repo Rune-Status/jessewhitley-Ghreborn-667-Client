@@ -18,7 +18,7 @@ public class Class16
         Class6.method166();
         do
         {
-            int j = class30_sub2_sub2.method410();
+            int j = class30_sub2_sub2.readUnsignedShort();
             if(j == 65535)
                 return;
             aClass16Array325[j] = new Class16(8);
@@ -56,8 +56,8 @@ public class Class16
 
         if(!flag)
             anInt324 = 58;
-        anInt330 = class30_sub2_sub2.method410();
-        anInt331 = class30_sub2_sub2.method410();
+        anInt330 = class30_sub2_sub2.readUnsignedShort();
+        anInt331 = class30_sub2_sub2.readUnsignedShort();
     }
 
     private final int method243(int i)
